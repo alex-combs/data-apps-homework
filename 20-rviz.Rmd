@@ -171,11 +171,19 @@ ggplot(college_grad_students, aes(y = grad_median)) +
 There are two functions that make bar graphs: `geom_bar` and `geom_col`. Recall that a bar chart is used to show counts or proportions of levels within a categorical variable. In Chapter \@ref(data-visualization), a bar chart was used to show the counts and proportions of graduate majors defined as having either high or low unemployment. The table below shows a few rows and variables from the data. Note that these data are **disaggregated** with respect to the count of majors belonging to high or low unemployment. That is, we need our bar chart to count the number of rows with "high" and "low" in the `unemp_cat` column. In this case, we should use `geom_bar`.
 
 ```{r, echo=FALSE}
+library(fivethirtyeight)
+
+gradschool <- college_grad_students %>% 
+  mutate(unemp_cat = if_else(grad_unemployment_rate >= 0.05, "high", "low"))
+
+gradschool_spia <- college_grad_students %>% 
+  filter(major %in% c('Public Administration', 'Public Policy', 'Political Science And Government', 'International Relations'))
+
 gradschool_spia2 <- gradschool_spia %>% 
   mutate(unemp_cat = if_else(grad_unemployment_rate >= 0.05, "high", "low")) %>% 
   select(major, grad_total, grad_unemployment_rate, unemp_cat, grad_median)
 
-gradschool$unemp_cat <- as.factor(gradschool$unemp_cat)
+gradschool_spia2$unemp_cat <- as.factor(gradschool_spia2$unemp_cat)
 
 kable(gradschool_spia2, digits = 3)
 ```

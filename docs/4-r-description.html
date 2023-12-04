@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title> 4 R Description | PADP 7120 Homework</title>
+  <meta name="description" content="Homework for PADP 7120" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content=" 4 R Description | PADP 7120 Homework" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Homework for PADP 7120" />
+  <meta name="github-repo" content="alex-combs/data-apps-homework" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content=" 4 R Description | PADP 7120 Homework" />
+  
+  <meta name="twitter:description" content="Homework for PADP 7120" />
+  
+
+<meta name="author" content="Alex Combs" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="3-r-missing-data.html"/>
+<link rel="next" href="5-r-visualization.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.28/datatables.js"></script>
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Applications in PA</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="part"><span><b>I R Chapters</b></span></li>
+<li class="chapter" data-level="1" data-path="1-r-chapter-introduction.html"><a href="1-r-chapter-introduction.html"><i class="fa fa-check"></i><b>1</b> R Chapter Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1-r-chapter-introduction.html"><a href="1-r-chapter-introduction.html#what-is-r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> What is R and RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="1-r-chapter-introduction.html"><a href="1-r-chapter-introduction.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>1.2</b> Installing R and RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="1-r-chapter-introduction.html"><a href="1-r-chapter-introduction.html#rstudio-orientation"><i class="fa fa-check"></i><b>1.3</b> RStudio orientation</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="1-r-chapter-introduction.html"><a href="1-r-chapter-introduction.html#r-markdown"><i class="fa fa-check"></i><b>1.3.1</b> R Markdown</a></li>
+<li class="chapter" data-level="1.3.2" data-path="1-r-chapter-introduction.html"><a href="1-r-chapter-introduction.html#r-packages"><i class="fa fa-check"></i><b>1.3.2</b> R Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-r-chapter-introduction.html"><a href="1-r-chapter-introduction.html#save-and-upload"><i class="fa fa-check"></i><b>1.4</b> Save and Upload</a></li>
+<li class="chapter" data-level="1.5" data-path="1-r-chapter-introduction.html"><a href="1-r-chapter-introduction.html#additional-resources"><i class="fa fa-check"></i><b>1.5</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-r-data.html"><a href="2-r-data.html"><i class="fa fa-check"></i><b>2</b> R Data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2-r-data.html"><a href="2-r-data.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="2-r-data.html"><a href="2-r-data.html#set-up"><i class="fa fa-check"></i><b>2.2</b> Set-up</a></li>
+<li class="chapter" data-level="2.3" data-path="2-r-data.html"><a href="2-r-data.html#viewing-data-sets"><i class="fa fa-check"></i><b>2.3</b> Viewing data sets</a></li>
+<li class="chapter" data-level="2.4" data-path="2-r-data.html"><a href="2-r-data.html#glimpse-data"><i class="fa fa-check"></i><b>2.4</b> Glimpse Data</a></li>
+<li class="chapter" data-level="2.5" data-path="2-r-data.html"><a href="2-r-data.html#variable-types-in-r"><i class="fa fa-check"></i><b>2.5</b> Variable Types in R</a></li>
+<li class="chapter" data-level="2.6" data-path="2-r-data.html"><a href="2-r-data.html#save-and-upload-1"><i class="fa fa-check"></i><b>2.6</b> Save and Upload</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-r-missing-data.html"><a href="3-r-missing-data.html"><i class="fa fa-check"></i><b>3</b> R Missing Data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3-r-missing-data.html"><a href="3-r-missing-data.html#learning-objectives-1"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.2" data-path="3-r-missing-data.html"><a href="3-r-missing-data.html#set-up-1"><i class="fa fa-check"></i><b>3.2</b> Set-up</a></li>
+<li class="chapter" data-level="3.3" data-path="3-r-missing-data.html"><a href="3-r-missing-data.html#data"><i class="fa fa-check"></i><b>3.3</b> Data</a></li>
+<li class="chapter" data-level="3.4" data-path="3-r-missing-data.html"><a href="3-r-missing-data.html#checking-for-missing-data"><i class="fa fa-check"></i><b>3.4</b> Checking for missing data</a></li>
+<li class="chapter" data-level="3.5" data-path="3-r-missing-data.html"><a href="3-r-missing-data.html#counting-missing-values"><i class="fa fa-check"></i><b>3.5</b> Counting missing values</a></li>
+<li class="chapter" data-level="3.6" data-path="3-r-missing-data.html"><a href="3-r-missing-data.html#bypassing-missing-values"><i class="fa fa-check"></i><b>3.6</b> Bypassing missing values</a></li>
+<li class="chapter" data-level="3.7" data-path="3-r-missing-data.html"><a href="3-r-missing-data.html#drop-all-missing-cases"><i class="fa fa-check"></i><b>3.7</b> Drop all missing cases</a></li>
+<li class="chapter" data-level="3.8" data-path="3-r-missing-data.html"><a href="3-r-missing-data.html#save-and-upload-2"><i class="fa fa-check"></i><b>3.8</b> Save and Upload</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-r-description.html"><a href="4-r-description.html"><i class="fa fa-check"></i><b>4</b> R Description</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4-r-description.html"><a href="4-r-description.html#learning-objectives-2"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="4-r-description.html"><a href="4-r-description.html#set-up-2"><i class="fa fa-check"></i><b>4.2</b> Set-up</a></li>
+<li class="chapter" data-level="4.3" data-path="4-r-description.html"><a href="4-r-description.html#introduction"><i class="fa fa-check"></i><b>4.3</b> Introduction</a></li>
+<li class="chapter" data-level="4.4" data-path="4-r-description.html"><a href="4-r-description.html#quick-stat-computation"><i class="fa fa-check"></i><b>4.4</b> Quick Stat Computation</a></li>
+<li class="chapter" data-level="4.5" data-path="4-r-description.html"><a href="4-r-description.html#summary-table"><i class="fa fa-check"></i><b>4.5</b> Summary Table</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="4-r-description.html"><a href="4-r-description.html#quick-table"><i class="fa fa-check"></i><b>4.5.1</b> Quick Table</a></li>
+<li class="chapter" data-level="4.5.2" data-path="4-r-description.html"><a href="4-r-description.html#using-arsenal"><i class="fa fa-check"></i><b>4.5.2</b> Using Arsenal</a></li>
+<li class="chapter" data-level="4.5.3" data-path="4-r-description.html"><a href="4-r-description.html#adjustments-to-arsenal"><i class="fa fa-check"></i><b>4.5.3</b> Adjustments to Arsenal</a></li>
+<li class="chapter" data-level="4.5.4" data-path="4-r-description.html"><a href="4-r-description.html#export-to-csv"><i class="fa fa-check"></i><b>4.5.4</b> Export to CSV</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="4-r-description.html"><a href="4-r-description.html#correlation-coefficient"><i class="fa fa-check"></i><b>4.6</b> Correlation Coefficient</a></li>
+<li class="chapter" data-level="4.7" data-path="4-r-description.html"><a href="4-r-description.html#save-and-upload-3"><i class="fa fa-check"></i><b>4.7</b> Save and Upload</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-r-visualization.html"><a href="5-r-visualization.html"><i class="fa fa-check"></i><b>5</b> R Visualization</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5-r-visualization.html"><a href="5-r-visualization.html#learning-objectives-3"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="5.2" data-path="5-r-visualization.html"><a href="5-r-visualization.html#set-up-3"><i class="fa fa-check"></i><b>5.2</b> Set-up</a></li>
+<li class="chapter" data-level="5.3" data-path="5-r-visualization.html"><a href="5-r-visualization.html#grammar-of-graphics"><i class="fa fa-check"></i><b>5.3</b> Grammar of graphics</a></li>
+<li class="chapter" data-level="5.4" data-path="5-r-visualization.html"><a href="5-r-visualization.html#histogram"><i class="fa fa-check"></i><b>5.4</b> Histogram</a></li>
+<li class="chapter" data-level="5.5" data-path="5-r-visualization.html"><a href="5-r-visualization.html#box-plot"><i class="fa fa-check"></i><b>5.5</b> Box plot</a></li>
+<li class="chapter" data-level="5.6" data-path="5-r-visualization.html"><a href="5-r-visualization.html#bar-chart"><i class="fa fa-check"></i><b>5.6</b> Bar chart</a></li>
+<li class="chapter" data-level="5.7" data-path="5-r-visualization.html"><a href="5-r-visualization.html#scatter-plot"><i class="fa fa-check"></i><b>5.7</b> Scatter plot</a></li>
+<li class="chapter" data-level="5.8" data-path="5-r-visualization.html"><a href="5-r-visualization.html#line-graph"><i class="fa fa-check"></i><b>5.8</b> Line graph</a></li>
+<li class="chapter" data-level="5.9" data-path="5-r-visualization.html"><a href="5-r-visualization.html#save-and-upload-4"><i class="fa fa-check"></i><b>5.9</b> Save and Upload</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-r-regression.html"><a href="6-r-regression.html"><i class="fa fa-check"></i><b>6</b> R Regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="6-r-regression.html"><a href="6-r-regression.html#learning-objectives-4"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="6-r-regression.html"><a href="6-r-regression.html#set-up-4"><i class="fa fa-check"></i><b>6.2</b> Set-up</a></li>
+<li class="chapter" data-level="6.3" data-path="6-r-regression.html"><a href="6-r-regression.html#running-regression"><i class="fa fa-check"></i><b>6.3</b> Running Regression</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="6-r-regression.html"><a href="6-r-regression.html#general-syntax"><i class="fa fa-check"></i><b>6.3.1</b> General Syntax</a></li>
+<li class="chapter" data-level="6.3.2" data-path="6-r-regression.html"><a href="6-r-regression.html#continuous-outcome-and-continuous-or-categorical-explanatory-variables"><i class="fa fa-check"></i><b>6.3.2</b> Continuous outcome and continuous or categorical explanatory variables</a></li>
+<li class="chapter" data-level="6.3.3" data-path="6-r-regression.html"><a href="6-r-regression.html#interactions"><i class="fa fa-check"></i><b>6.3.3</b> Interactions</a></li>
+<li class="chapter" data-level="6.3.4" data-path="6-r-regression.html"><a href="6-r-regression.html#dummy-outcome"><i class="fa fa-check"></i><b>6.3.4</b> Dummy outcome</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="6-r-regression.html"><a href="6-r-regression.html#reporting-regression-estimates"><i class="fa fa-check"></i><b>6.4</b> Reporting Regression Estimates</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="6-r-regression.html"><a href="6-r-regression.html#moderndive"><i class="fa fa-check"></i><b>6.4.1</b> Moderndive</a></li>
+<li class="chapter" data-level="6.4.2" data-path="6-r-regression.html"><a href="6-r-regression.html#base-r"><i class="fa fa-check"></i><b>6.4.2</b> Base R</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="6-r-regression.html"><a href="6-r-regression.html#save-and-upload-5"><i class="fa fa-check"></i><b>6.5</b> Save and Upload</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-r-nonlinear-regression.html"><a href="7-r-nonlinear-regression.html"><i class="fa fa-check"></i><b>7</b> R Nonlinear Regression</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="7-r-nonlinear-regression.html"><a href="7-r-nonlinear-regression.html#learning-objectives-5"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="7.2" data-path="7-r-nonlinear-regression.html"><a href="7-r-nonlinear-regression.html#set-up-5"><i class="fa fa-check"></i><b>7.2</b> Set-up</a></li>
+<li class="chapter" data-level="7.3" data-path="7-r-nonlinear-regression.html"><a href="7-r-nonlinear-regression.html#quadratic-term"><i class="fa fa-check"></i><b>7.3</b> Quadratic term</a></li>
+<li class="chapter" data-level="7.4" data-path="7-r-nonlinear-regression.html"><a href="7-r-nonlinear-regression.html#log-transformation"><i class="fa fa-check"></i><b>7.4</b> Log Transformation</a></li>
+<li class="chapter" data-level="7.5" data-path="7-r-nonlinear-regression.html"><a href="7-r-nonlinear-regression.html#save-and-upload-6"><i class="fa fa-check"></i><b>7.5</b> Save and Upload</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-r-evaluations.html"><a href="8-r-evaluations.html"><i class="fa fa-check"></i><b>8</b> R Evaluations</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="8-r-evaluations.html"><a href="8-r-evaluations.html#learning-outcomes"><i class="fa fa-check"></i><b>8.1</b> Learning Outcomes</a></li>
+<li class="chapter" data-level="8.2" data-path="8-r-evaluations.html"><a href="8-r-evaluations.html#set-up-6"><i class="fa fa-check"></i><b>8.2</b> Set-up</a></li>
+<li class="chapter" data-level="8.3" data-path="8-r-evaluations.html"><a href="8-r-evaluations.html#chi-square-test"><i class="fa fa-check"></i><b>8.3</b> Chi-square test</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="8-r-evaluations.html"><a href="8-r-evaluations.html#cross-tab"><i class="fa fa-check"></i><b>8.3.1</b> Cross-tab</a></li>
+<li class="chapter" data-level="8.3.2" data-path="8-r-evaluations.html"><a href="8-r-evaluations.html#run-chi-square"><i class="fa fa-check"></i><b>8.3.2</b> Run chi-square</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="8-r-evaluations.html"><a href="8-r-evaluations.html#t-tests"><i class="fa fa-check"></i><b>8.4</b> T-tests</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="8-r-evaluations.html"><a href="8-r-evaluations.html#independent-t-test"><i class="fa fa-check"></i><b>8.4.1</b> Independent t-test</a></li>
+<li class="chapter" data-level="8.4.2" data-path="8-r-evaluations.html"><a href="8-r-evaluations.html#dependent-t-test"><i class="fa fa-check"></i><b>8.4.2</b> Dependent t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="8-r-evaluations.html"><a href="8-r-evaluations.html#save-and-upload-7"><i class="fa fa-check"></i><b>8.5</b> Save and Upload</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="A-coding-tips.html"><a href="A-coding-tips.html"><i class="fa fa-check"></i><b>A</b> Coding Tips</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="A-coding-tips.html"><a href="A-coding-tips.html#keyboard-shortcuts"><i class="fa fa-check"></i><b>A.1</b> Keyboard Shortcuts</a></li>
+<li class="chapter" data-level="A.2" data-path="A-coding-tips.html"><a href="A-coding-tips.html#specifying-datasets-and-variables"><i class="fa fa-check"></i><b>A.2</b> Specifying Datasets and Variables</a>
+<ul>
+<li class="chapter" data-level="A.2.1" data-path="A-coding-tips.html"><a href="A-coding-tips.html#datasets"><i class="fa fa-check"></i><b>A.2.1</b> Datasets</a></li>
+<li class="chapter" data-level="A.2.2" data-path="A-coding-tips.html"><a href="A-coding-tips.html#variables"><i class="fa fa-check"></i><b>A.2.2</b> Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="A.3" data-path="A-coding-tips.html"><a href="A-coding-tips.html#assignment-and-pipe-operators"><i class="fa fa-check"></i><b>A.3</b> Assignment and Pipe Operators</a>
+<ul>
+<li class="chapter" data-level="A.3.1" data-path="A-coding-tips.html"><a href="A-coding-tips.html#assignment-operator"><i class="fa fa-check"></i><b>A.3.1</b> Assignment Operator</a></li>
+<li class="chapter" data-level="A.3.2" data-path="A-coding-tips.html"><a href="A-coding-tips.html#pipe-operator"><i class="fa fa-check"></i><b>A.3.2</b> Pipe Operator</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="B-appendixB.html"><a href="B-appendixB.html"><i class="fa fa-check"></i><b>B</b> Wrangle and Tidy Reference</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="B-appendixB.html"><a href="B-appendixB.html#cheatsheets"><i class="fa fa-check"></i><b>B.1</b> Cheatsheets</a></li>
+<li class="chapter" data-level="B.2" data-path="B-appendixB.html"><a href="B-appendixB.html#wrangle-verbs"><i class="fa fa-check"></i><b>B.2</b> Wrangle Verbs</a>
+<ul>
+<li class="chapter" data-level="B.2.1" data-path="B-appendixB.html"><a href="B-appendixB.html#filter"><i class="fa fa-check"></i><b>B.2.1</b> Filter</a></li>
+<li class="chapter" data-level="B.2.2" data-path="B-appendixB.html"><a href="B-appendixB.html#select"><i class="fa fa-check"></i><b>B.2.2</b> Select</a></li>
+<li class="chapter" data-level="B.2.3" data-path="B-appendixB.html"><a href="B-appendixB.html#mutate"><i class="fa fa-check"></i><b>B.2.3</b> Mutate</a></li>
+<li class="chapter" data-level="B.2.4" data-path="B-appendixB.html"><a href="B-appendixB.html#combining-filter-select-and-mutate"><i class="fa fa-check"></i><b>B.2.4</b> Combining filter, select, and mutate</a></li>
+<li class="chapter" data-level="B.2.5" data-path="B-appendixB.html"><a href="B-appendixB.html#combining-mutate-and-if_else"><i class="fa fa-check"></i><b>B.2.5</b> Combining Mutate and If_Else</a></li>
+<li class="chapter" data-level="B.2.6" data-path="B-appendixB.html"><a href="B-appendixB.html#arrange"><i class="fa fa-check"></i><b>B.2.6</b> Arrange</a></li>
+<li class="chapter" data-level="B.2.7" data-path="B-appendixB.html"><a href="B-appendixB.html#slice_headtail"><i class="fa fa-check"></i><b>B.2.7</b> Slice_Head/Tail</a></li>
+<li class="chapter" data-level="B.2.8" data-path="B-appendixB.html"><a href="B-appendixB.html#summarize"><i class="fa fa-check"></i><b>B.2.8</b> Summarize</a></li>
+<li class="chapter" data-level="B.2.9" data-path="B-appendixB.html"><a href="B-appendixB.html#group_by"><i class="fa fa-check"></i><b>B.2.9</b> Group_By</a></li>
+</ul></li>
+<li class="chapter" data-level="B.3" data-path="B-appendixB.html"><a href="B-appendixB.html#tidy-verbs"><i class="fa fa-check"></i><b>B.3</b> Tidy Verbs</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">PADP 7120 Homework</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r-description" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number"> 4</span> R Description<a href="4-r-description.html#r-description" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="learning-objectives-2" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Learning Objectives<a href="4-r-description.html#learning-objectives-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this chapter, you will learn how to:</p>
+<ul>
+<li>Calculate descriptive statistics individually</li>
+<li>Automate a professional-quality table of descriptive statistics</li>
+</ul>
+</div>
+<div id="set-up-2" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Set-up<a href="4-r-description.html#set-up-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To complete this chapter, you need to</p>
+<ul>
+<li>Start a R Markdown document</li>
+<li>Change the YAML to the following:</li>
+</ul>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="4-r-description.html#cb31-1" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb31-2"><a href="4-r-description.html#cb31-2" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&#39;R Chapter 19&#39;</span></span>
+<span id="cb31-3"><a href="4-r-description.html#cb31-3" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&#39;Your name&#39;</span></span>
+<span id="cb31-4"><a href="4-r-description.html#cb31-4" tabindex="-1"></a>output<span class="sc">:</span> </span>
+<span id="cb31-5"><a href="4-r-description.html#cb31-5" tabindex="-1"></a>  html_document<span class="sc">:</span></span>
+<span id="cb31-6"><a href="4-r-description.html#cb31-6" tabindex="-1"></a>    theme<span class="sc">:</span> spacelab</span>
+<span id="cb31-7"><a href="4-r-description.html#cb31-7" tabindex="-1"></a>    df_print<span class="sc">:</span> paged</span>
+<span id="cb31-8"><a href="4-r-description.html#cb31-8" tabindex="-1"></a><span class="sc">---</span></span></code></pre></div>
+<ul>
+<li>Load the following packages</li>
+</ul>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="4-r-description.html#cb32-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb32-2"><a href="4-r-description.html#cb32-2" tabindex="-1"></a><span class="fu">library</span>(arsenal)</span>
+<span id="cb32-3"><a href="4-r-description.html#cb32-3" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb32-4"><a href="4-r-description.html#cb32-4" tabindex="-1"></a><span class="fu">library</span>(carData)</span></code></pre></div>
+</div>
+<div id="introduction" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Introduction<a href="4-r-description.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Summary statistics tables are ubiquitous in reports and studies. Usually a dataset involves numerous variables that would require too many visualizations, though we should still consider visualizations for the most important variables. A standard table of summary stats provides readers a reference for key measures pertaining to all our variables in a fairly compact form.</p>
+<p>In this chapter, we set out to summarize variables within the <code>States</code> dataset of the <code>carData</code> package.</p>
+<div class="learncheck">
+<p>
+<strong>Exercise 1:</strong> Use the <code>glimpse</code> function to
+examine the <code>States</code> dataset.
+</p>
+</div>
+<p><code>States</code> is a cross-section of the 50 states and D.C. containing education and related statistics. Be sure to skim the documentation for <code>States</code> to understand each variable. You can do that by clicking on the <code>carData</code> package under the Packages tab then clicking on the <code>States</code> link.</p>
+</div>
+<div id="quick-stat-computation" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Quick Stat Computation<a href="4-r-description.html#quick-stat-computation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Instead of producing a full table of descriptive statistics, sometimes we just want to know one or two descriptive measures of a single variable.</p>
+<blockquote>
+<p>Because R can hold many datasets/objects at once, we need to tell it which dataset/object to apply a given function. We have had to do this many times already. Similarly, if we want R to apply a function to a <em>specific variable</em> within a dataset, we need to tell which variable in which dataset. This is done using the <code>$</code> operator.</p>
+</blockquote>
+<p>Below are all of the useful descriptive measures of center and spread applied to the <code>pay</code> (i.e. average teacher’s salary in 1,000s) variable in the <code>States</code> dataset. Note that the <code>$</code> operator tells R to apply the function to a specific variable within a dataset.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="4-r-description.html#cb33-1" tabindex="-1"></a><span class="fu">mean</span>(States<span class="sc">$</span>pay)</span></code></pre></div>
+<pre><code>[1] 30.94118</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="4-r-description.html#cb35-1" tabindex="-1"></a><span class="fu">median</span>(States<span class="sc">$</span>pay)</span></code></pre></div>
+<pre><code>[1] 30</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="4-r-description.html#cb37-1" tabindex="-1"></a><span class="fu">sd</span>(States<span class="sc">$</span>pay)</span></code></pre></div>
+<pre><code>[1] 5.308151</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="4-r-description.html#cb39-1" tabindex="-1"></a><span class="fu">IQR</span>(States<span class="sc">$</span>pay)</span></code></pre></div>
+<pre><code>[1] 6</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="4-r-description.html#cb41-1" tabindex="-1"></a><span class="fu">range</span>(States<span class="sc">$</span>pay)</span></code></pre></div>
+<pre><code>[1] 22 43</code></pre>
+<div class="learncheck">
+<p>
+<strong>Exercise 2:</strong> Calculate the average and standard
+deviation for state spending on public education in $1000s per
+student.
+</p>
+</div>
+</div>
+<div id="summary-table" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Summary Table<a href="4-r-description.html#summary-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Summary tables come in many styles, so there is no way to cover everything. In most cases, a summary table includes the following descriptive measures depending on the type of variable:</p>
+<ul>
+<li>Numerical variables
+<ul>
+<li>Mean</li>
+<li>Standard deviation</li>
+<li>Minimum</li>
+<li>Maximum</li>
+</ul></li>
+<li>Categorical variables
+<ul>
+<li>Counts for each level, and/or</li>
+<li>Percentages for each level</li>
+</ul></li>
+</ul>
+<p>If a variable is skewed, then it may be wise to replace the mean and standard deviation with the median and IQR. We will learn how to do this.</p>
+<div id="quick-table" class="section level3 hasAnchor" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> Quick Table<a href="4-r-description.html#quick-table" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sometimes we do not want to print a fancy table. Rather, we may want to quickly see a full set of descriptive statistics for ourselves that our reader will never see. This can be done using the <code>summary</code> function on our dataset like so:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="4-r-description.html#cb43-1" tabindex="-1"></a><span class="fu">summary</span>(gapminder)</span></code></pre></div>
+<pre><code>        country        continent        year         lifeExp     
+ Afghanistan:  12   Africa  :624   Min.   :1952   Min.   :23.60  
+ Albania    :  12   Americas:300   1st Qu.:1966   1st Qu.:48.20  
+ Algeria    :  12   Asia    :396   Median :1980   Median :60.71  
+ Angola     :  12   Europe  :360   Mean   :1980   Mean   :59.47  
+ Argentina  :  12   Oceania : 24   3rd Qu.:1993   3rd Qu.:70.85  
+ Australia  :  12                  Max.   :2007   Max.   :82.60  
+ (Other)    :1632                                                
+      pop              gdpPercap       
+ Min.   :6.001e+04   Min.   :   241.2  
+ 1st Qu.:2.794e+06   1st Qu.:  1202.1  
+ Median :7.024e+06   Median :  3531.8  
+ Mean   :2.960e+07   Mean   :  7215.3  
+ 3rd Qu.:1.959e+07   3rd Qu.:  9325.5  
+ Max.   :1.319e+09   Max.   :113523.1  
+                                       </code></pre>
+<p>We would almost certainly want to suppress this code and output (i.e. <code>include=FALSE</code> code chunk option) if preparing a report for an external audience. Note that for the categorical variables, country and continent, <code>summary</code> provides the count of observations instead of measures of center or spread.</p>
+<div class="learncheck">
+<p>
+<strong>Exercise 3:</strong> Generate a quick table of descriptive
+statistics for all of the variables in <code>States</code>. Suppress the
+code and output.
+</p>
+</div>
+</div>
+<div id="using-arsenal" class="section level3 hasAnchor" number="4.5.2">
+<h3><span class="header-section-number">4.5.2</span> Using Arsenal<a href="4-r-description.html#using-arsenal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Due to the many styles of summary tables, there are numerous R packages designed to produce summary tables. The best R package in terms of quickly getting the information to a nicely formatted table of which I am aware is Arsenal. Therefore, we will learn how to use Arsenal. I will demonstrate Arsenal using the <code>gapminder</code> dataset. Then, I will ask you to replicate those demonstrations using the <code>States</code> data.</p>
+<p>Producing a summary table with Arsenal involves at least two, probably three, steps.</p>
+<ul>
+<li>Create a new object containing the summary statistics we want to include in a table</li>
+<li>Relabel the variables to something appropriate for our audience</li>
+<li>Generating the summary table based on the new object we just created</li>
+</ul>
+<p>Here is an example following the steps above using <code>gapminder</code> data without altering any of Aresenal’s default options that we will want to know how to alter in some cases.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="4-r-description.html#cb45-1" tabindex="-1"></a>sum.gapminder <span class="ot">&lt;-</span> <span class="fu">tableby</span>(<span class="sc">~</span> continent <span class="sc">+</span> gdpPercap <span class="sc">+</span> lifeExp <span class="sc">+</span> pop, <span class="at">data =</span> gapminder)</span></code></pre></div>
+<p>The above code is what actually creates the table I want to export. First, I name the object whatever I want. Then I use the <code>tableby</code> function. We will learn what the tilde, <code>~</code>, does later. For now, know that it is required. Then, I list the variable I want included in the table, separating each with a plus sign. Lastly, I tell R which dataset to apply this function.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="4-r-description.html#cb46-1" tabindex="-1"></a><span class="fu">labels</span>(sum.gapminder) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">continent =</span> <span class="st">&quot;Continent&quot;</span>, <span class="at">gdpPercap =</span> <span class="st">&quot;GDP Per Capita&quot;</span>, <span class="at">lifeExp =</span> <span class="st">&quot;Life Expectancy&quot;</span>, <span class="at">pop =</span> <span class="st">&quot;Population&quot;</span>)</span></code></pre></div>
+<p>Most datasets do not use variable names that would be appropriate for an external audience. The names in <code>gapminder</code> are not bad; most readers could make sense of what the names imply about the data, but it is simple enough (though tedious) to provide a more polished look.</p>
+<p>Therefore, in the above code I use the <code>labels</code> function on the <code>sum.gapminder</code> table I just created, then assign each variable I told R to include in the table a label that will replace the name when it prints.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="4-r-description.html#cb47-1" tabindex="-1"></a><span class="fu">summary</span>(sum.gapminder, <span class="at">title =</span> <span class="st">&quot;Summary Stats for Gapminder Data&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-52">Table 4.1: </span>Summary Stats for Gapminder Data</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="center">Overall (N=1704)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Continent</strong></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">   Africa</td>
+<td align="center">624 (36.6%)</td>
+</tr>
+<tr class="odd">
+<td align="left">   Americas</td>
+<td align="center">300 (17.6%)</td>
+</tr>
+<tr class="even">
+<td align="left">   Asia</td>
+<td align="center">396 (23.2%)</td>
+</tr>
+<tr class="odd">
+<td align="left">   Europe</td>
+<td align="center">360 (21.1%)</td>
+</tr>
+<tr class="even">
+<td align="left">   Oceania</td>
+<td align="center">24 (1.4%)</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>GDP Per Capita</strong></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">   Mean (SD)</td>
+<td align="center">7215.327 (9857.455)</td>
+</tr>
+<tr class="odd">
+<td align="left">   Range</td>
+<td align="center">241.166 - 113523.133</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Life Expectancy</strong></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left">   Mean (SD)</td>
+<td align="center">59.474 (12.917)</td>
+</tr>
+<tr class="even">
+<td align="left">   Range</td>
+<td align="center">23.599 - 82.603</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Population</strong></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">   Mean (SD)</td>
+<td align="center">29601212.325 (106157896.744)</td>
+</tr>
+<tr class="odd">
+<td align="left">   Range</td>
+<td align="center">60011.000 - 1318683096.000</td>
+</tr>
+</tbody>
+</table>
+<p>This last line of code actually prints the summary table when I knit my document. The previous two steps (<code>tableby</code> and <code>labels</code>) can be included in the same code chunk, but <strong>this third step needs to have its own code chunk because</strong></p>
+<blockquote>
+<p>you need to include a specific code chunk option, <code>results='asis'</code>, in order for the table to export properly. To be clear, in the top line of a code chunk that contains <code>{r}</code> by default, you need to change it to <code>{r, results='asis', echo=FALSE}</code>. I also include the <code>echo=FALSE</code> option assuming we do not want our reader to see our code.</p>
+</blockquote>
+<div class="learncheck">
+<p>
+<strong>Exercise 4:</strong> Replicate the code shown above to create
+a summary table for the <code>States</code> data using the Arsenal
+package. Be sure to relabel the variables to something relatively
+understandable and brief. Labeling is tedious but you only need to do it
+once. I suggest you knit your document now to see what you just
+made.
+</p>
+</div>
+<p>In three relatively short bits of code, we already have a decent summary table that would have taken excruciatingly long to input manually. But it can be made better.</p>
+</div>
+<div id="adjustments-to-arsenal" class="section level3 hasAnchor" number="4.5.3">
+<h3><span class="header-section-number">4.5.3</span> Adjustments to Arsenal<a href="4-r-description.html#adjustments-to-arsenal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="decimal-digits" class="section level4 hasAnchor" number="4.5.3.1">
+<h4><span class="header-section-number">4.5.3.1</span> Decimal digits<a href="4-r-description.html#decimal-digits" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The biggest aesthetic issue with my table is that it includes so many decimals. None of these variables have such a small range that rounding to integers masks useful information. Obviously, if a variable only ranges between 0 and 1, we would not want to round to an integer.</p>
+<p>Specifying the number of decimals is quite easy with Arsenal. Because arsenal tries to be as flexible as possible, we have to specify the number of decimals separately for numerical and percentage measures. The following code sets the number of decimals to zero for the gapminder data.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="4-r-description.html#cb48-1" tabindex="-1"></a>sum.gapminder2 <span class="ot">&lt;-</span> <span class="fu">tableby</span>(<span class="sc">~</span> continent <span class="sc">+</span> gdpPercap <span class="sc">+</span> lifeExp <span class="sc">+</span> pop, <span class="at">data =</span> gapminder, <span class="at">digits =</span> <span class="dv">0</span>, <span class="at">digits.pct =</span> <span class="dv">0</span>)</span>
+<span id="cb48-2"><a href="4-r-description.html#cb48-2" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="4-r-description.html#cb48-3" tabindex="-1"></a><span class="fu">labels</span>(sum.gapminder2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">continent =</span> <span class="st">&quot;Continent&quot;</span>, <span class="at">gdpPercap =</span> <span class="st">&quot;GDP Per Capita&quot;</span>, <span class="at">lifeExp =</span> <span class="st">&quot;Life Expectancy&quot;</span>, <span class="at">pop =</span> <span class="st">&quot;Population&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="4-r-description.html#cb49-1" tabindex="-1"></a><span class="fu">summary</span>(sum.gapminder2, <span class="at">title =</span> <span class="st">&quot;Summary Stats for Gapminder Data&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-55">Table 4.2: </span>Summary Stats for Gapminder Data</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="center">Overall (N=1704)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Continent</strong></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">   Africa</td>
+<td align="center">624 (37%)</td>
+</tr>
+<tr class="odd">
+<td align="left">   Americas</td>
+<td align="center">300 (18%)</td>
+</tr>
+<tr class="even">
+<td align="left">   Asia</td>
+<td align="center">396 (23%)</td>
+</tr>
+<tr class="odd">
+<td align="left">   Europe</td>
+<td align="center">360 (21%)</td>
+</tr>
+<tr class="even">
+<td align="left">   Oceania</td>
+<td align="center">24 (1%)</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>GDP Per Capita</strong></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">   Mean (SD)</td>
+<td align="center">7215 (9857)</td>
+</tr>
+<tr class="odd">
+<td align="left">   Range</td>
+<td align="center">241 - 113523</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Life Expectancy</strong></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left">   Mean (SD)</td>
+<td align="center">59 (13)</td>
+</tr>
+<tr class="even">
+<td align="left">   Range</td>
+<td align="center">24 - 83</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Population</strong></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">   Mean (SD)</td>
+<td align="center">29601212 (106157897)</td>
+</tr>
+<tr class="odd">
+<td align="left">   Range</td>
+<td align="center">60011 - 1318683096</td>
+</tr>
+</tbody>
+</table>
+<div class="learncheck">
+<p>
+<strong>Exercise 5:</strong> Replicate the code shown above to create
+a second summary table for the <code>States</code> data with no
+decimals. Note that you can simply copy-and-paste the labels code.
+</p>
+</div>
+</div>
+<div id="reporting-median-and-iqr" class="section level4 hasAnchor" number="4.5.3.2">
+<h4><span class="header-section-number">4.5.3.2</span> Reporting median and IQR<a href="4-r-description.html#reporting-median-and-iqr" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Instead of the mean and standard deviation, we may want to report the median, first quartile, and third quartile for our numerical variables. We can control the descriptive measures using the following code.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="4-r-description.html#cb50-1" tabindex="-1"></a>sum.gapminder3 <span class="ot">&lt;-</span> <span class="fu">tableby</span>(<span class="sc">~</span> continent <span class="sc">+</span> gdpPercap <span class="sc">+</span> lifeExp <span class="sc">+</span> pop, <span class="at">data =</span> gapminder, <span class="at">digits =</span> <span class="dv">0</span>, <span class="at">digits.pct =</span> <span class="dv">0</span>, <span class="at">numeric.stats =</span> <span class="fu">c</span>(<span class="st">&quot;median&quot;</span>, <span class="st">&quot;q1q3&quot;</span>, <span class="st">&quot;range&quot;</span>))</span>
+<span id="cb50-2"><a href="4-r-description.html#cb50-2" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="4-r-description.html#cb50-3" tabindex="-1"></a><span class="fu">labels</span>(sum.gapminder3) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">continent =</span> <span class="st">&quot;Continent&quot;</span>, <span class="at">gdpPercap =</span> <span class="st">&quot;GDP Per Capita&quot;</span>, <span class="at">lifeExp =</span> <span class="st">&quot;Life Expectancy&quot;</span>, <span class="at">pop =</span> <span class="st">&quot;Population&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="4-r-description.html#cb51-1" tabindex="-1"></a><span class="fu">summary</span>(sum.gapminder3, <span class="at">title =</span> <span class="st">&quot;Summary Stats for Gapminder Data&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-58">Table 4.3: </span>Summary Stats for Gapminder Data</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="center">Overall (N=1704)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Continent</strong></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">   Africa</td>
+<td align="center">624 (37%)</td>
+</tr>
+<tr class="odd">
+<td align="left">   Americas</td>
+<td align="center">300 (18%)</td>
+</tr>
+<tr class="even">
+<td align="left">   Asia</td>
+<td align="center">396 (23%)</td>
+</tr>
+<tr class="odd">
+<td align="left">   Europe</td>
+<td align="center">360 (21%)</td>
+</tr>
+<tr class="even">
+<td align="left">   Oceania</td>
+<td align="center">24 (1%)</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>GDP Per Capita</strong></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">   Median</td>
+<td align="center">3532</td>
+</tr>
+<tr class="odd">
+<td align="left">   Q1, Q3</td>
+<td align="center">1202, 9325</td>
+</tr>
+<tr class="even">
+<td align="left">   Range</td>
+<td align="center">241 - 113523</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Life Expectancy</strong></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">   Median</td>
+<td align="center">61</td>
+</tr>
+<tr class="odd">
+<td align="left">   Q1, Q3</td>
+<td align="center">48, 71</td>
+</tr>
+<tr class="even">
+<td align="left">   Range</td>
+<td align="center">24 - 83</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Population</strong></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">   Median</td>
+<td align="center">7023596</td>
+</tr>
+<tr class="odd">
+<td align="left">   Q1, Q3</td>
+<td align="center">2793664, 19585222</td>
+</tr>
+<tr class="even">
+<td align="left">   Range</td>
+<td align="center">60011 - 1318683096</td>
+</tr>
+</tbody>
+</table>
+<div class="learncheck">
+<p>
+<strong>Exercise 6:</strong> Replicate the code shown above to create
+a summary table for the <code>States</code> data that reports median and
+the first and third quartiles.
+</p>
+</div>
+</div>
+<div id="across-groups" class="section level4 hasAnchor" number="4.5.3.3">
+<h4><span class="header-section-number">4.5.3.3</span> Across groups<a href="4-r-description.html#across-groups" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Finally, instead of reporting summary statistics for the entire sample, we may want to report them separately for each level of a categorical variable. This is a common way to make comparisons.</p>
+<p>We can have Arsenal report across groups by adding the categorical variable to the left side of the formula in the <code>tableby</code> code. The code below reports the <code>gapminder</code> data across continents. Note that the tilde <code>~</code> is used to separate grouping variables on the left side from the variables we wish to summarize on the right side.</p>
+<p>By default, Arsenal tests for correlations across groups and reports a p-value. This is not a common part of a summary table (at least for fields in which I am familiar), so I turn this feature off with the <code>test = FALSE</code> within the code below.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="4-r-description.html#cb52-1" tabindex="-1"></a>sum.gapminder4 <span class="ot">&lt;-</span> <span class="fu">tableby</span>(continent <span class="sc">~</span> gdpPercap <span class="sc">+</span> lifeExp <span class="sc">+</span> pop, <span class="at">data =</span> gapminder, <span class="at">digits =</span> <span class="dv">0</span>, <span class="at">digits.pct =</span> <span class="dv">0</span>, <span class="at">test =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb52-2"><a href="4-r-description.html#cb52-2" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="4-r-description.html#cb52-3" tabindex="-1"></a><span class="fu">labels</span>(sum.gapminder4) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">continent =</span> <span class="st">&quot;Continent&quot;</span>, <span class="at">gdpPercap =</span> <span class="st">&quot;GDP Per Capita&quot;</span>, <span class="at">lifeExp =</span> <span class="st">&quot;Life Expectancy&quot;</span>, <span class="at">pop =</span> <span class="st">&quot;Population&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="4-r-description.html#cb53-1" tabindex="-1"></a><span class="fu">summary</span>(sum.gapminder4, <span class="at">title =</span> <span class="st">&quot;Summary Stats for Gapminder Data&quot;</span>)</span></code></pre></div>
+<table style="width:100%;">
+<caption><span id="tab:unnamed-chunk-61">Table 4.4: </span>Summary Stats for Gapminder Data</caption>
+<colgroup>
+<col width="18%" />
+<col width="12%" />
+<col width="13%" />
+<col width="14%" />
+<col width="13%" />
+<col width="12%" />
+<col width="14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="center">Africa (N=624)</th>
+<th align="center">Americas (N=300)</th>
+<th align="center">Asia (N=396)</th>
+<th align="center">Europe (N=360)</th>
+<th align="center">Oceania (N=24)</th>
+<th align="center">Total (N=1704)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>GDP Per Capita</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">   Mean (SD)</td>
+<td align="center">2194 (2828)</td>
+<td align="center">7136 (6397)</td>
+<td align="center">7902 (14045)</td>
+<td align="center">14469 (9355)</td>
+<td align="center">18622 (6359)</td>
+<td align="center">7215 (9857)</td>
+</tr>
+<tr class="odd">
+<td align="left">   Range</td>
+<td align="center">241 - 21951</td>
+<td align="center">1202 - 42952</td>
+<td align="center">331 - 113523</td>
+<td align="center">974 - 49357</td>
+<td align="center">10040 - 34435</td>
+<td align="center">241 - 113523</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Life Expectancy</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left">   Mean (SD)</td>
+<td align="center">49 (9)</td>
+<td align="center">65 (9)</td>
+<td align="center">60 (12)</td>
+<td align="center">72 (5)</td>
+<td align="center">74 (4)</td>
+<td align="center">59 (13)</td>
+</tr>
+<tr class="even">
+<td align="left">   Range</td>
+<td align="center">24 - 76</td>
+<td align="center">38 - 81</td>
+<td align="center">29 - 83</td>
+<td align="center">44 - 82</td>
+<td align="center">69 - 81</td>
+<td align="center">24 - 83</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Population</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">   Mean (SD)</td>
+<td align="center">9916003 (15490923)</td>
+<td align="center">24504795 (50979430)</td>
+<td align="center">77038722 (206885205)</td>
+<td align="center">17169765 (20519438)</td>
+<td align="center">8874672 (6506342)</td>
+<td align="center">29601212 (106157897)</td>
+</tr>
+<tr class="odd">
+<td align="left">   Range</td>
+<td align="center">60011 - 135031164</td>
+<td align="center">662850 - 301139947</td>
+<td align="center">120447 - 1318683096</td>
+<td align="center">147962 - 82400996</td>
+<td align="center">1994794 - 20434176</td>
+<td align="center">60011 - 1318683096</td>
+</tr>
+</tbody>
+</table>
+<div class="learncheck">
+<p>
+<strong>Exercise 7:</strong> Replicate the code shown above to create
+a summary table for the <code>States</code> data that reports across
+regions.
+</p>
+</div>
+</div>
+</div>
+<div id="export-to-csv" class="section level3 hasAnchor" number="4.5.4">
+<h3><span class="header-section-number">4.5.4</span> Export to CSV<a href="4-r-description.html#export-to-csv" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Knitting your notebook to HTML, Word, or PDF should produce a summary table in the appropriate format. Depending on our or others’ workflow, we may want to export our summary table to CSV in order to open in Excel or other spreadsheet software. Arsenal can easily handle this.</p>
+<p>To export my <code>gapminder</code> summary to CSV, I need to create a new object that contains the actual summary table. Below, I save the last summary to the object named <code>sum.table</code>.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="4-r-description.html#cb54-1" tabindex="-1"></a>sum.table <span class="ot">&lt;-</span> <span class="fu">summary</span>(sum.gapminder4, <span class="at">title =</span> <span class="st">&quot;Summary Stats for Gapminder Data&quot;</span>)</span></code></pre></div>
+<p>Next, I need to convert this table into a data frame using the <code>as.data.frame()</code> function like so.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="4-r-description.html#cb55-1" tabindex="-1"></a>sum.table <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(sum.table)</span></code></pre></div>
+<p>Lastly, I just need to save this data frame as a CSV file using the <code>write.csv()</code> function like so.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="4-r-description.html#cb56-1" tabindex="-1"></a><span class="fu">write.csv</span>(sum.table, <span class="at">file =</span> <span class="st">&quot;sumtable.csv&quot;</span>)</span></code></pre></div>
+<p>R will save the CSV file to my project folder. Otherwise, R will save the file to my current working directory.</p>
+</div>
+</div>
+<div id="correlation-coefficient" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Correlation Coefficient<a href="4-r-description.html#correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As mentioned in Chapter <a href="#descriptive-statistics"><strong>??</strong></a>, the correlation coefficient quantifies the direction and strength of association between two numerical variables. It is rare to see correlations used in any table. Instead, correlations are typically used as an exploratory tool to inform a more advanced analysis like regression. Nevertheless, we may want to report a specific correlation coefficient in our prose.</p>
+<p>To calculate the correlation coefficient between two variables, we can use the <code>cor()</code> function like so:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="4-r-description.html#cb57-1" tabindex="-1"></a><span class="fu">cor</span>(gapminder<span class="sc">$</span>gdpPercap, gapminder<span class="sc">$</span>lifeExp)</span></code></pre></div>
+<pre><code>[1] 0.5837062</code></pre>
+<p>where I include two variables from the <code>gapminder</code> dataset.</p>
+<p>To calculate correlation coefficient between all numerical variables in a dataset, we can simply include the dataset in <code>cor</code> without specifying any variable. Note that I must first remove the variables that are not numeric.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="4-r-description.html#cb59-1" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb59-2"><a href="4-r-description.html#cb59-2" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>country, <span class="sc">-</span>continent) <span class="sc">%&gt;%</span> </span>
+<span id="cb59-3"><a href="4-r-description.html#cb59-3" tabindex="-1"></a>  <span class="fu">cor</span>()</span></code></pre></div>
+<pre><code>                year    lifeExp         pop   gdpPercap
+year      1.00000000 0.43561122  0.08230808  0.22731807
+lifeExp   0.43561122 1.00000000  0.06495537  0.58370622
+pop       0.08230808 0.06495537  1.00000000 -0.02559958
+gdpPercap 0.22731807 0.58370622 -0.02559958  1.00000000</code></pre>
+<div class="learncheck">
+<p>
+<strong>Exercise 8:</strong> Calculate the correlation coefficients
+between all the variables in <code>States</code>. Which two variables
+have the stongest correlation? What is the direction?
+</p>
+</div>
+</div>
+<div id="save-and-upload-3" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Save and Upload<a href="4-r-description.html#save-and-upload-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Knit your Rmd to save it and check for errors. If you are satisfied with your work, upload to eLC. Once you upload, answers will become available for download.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="3-r-missing-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5-r-visualization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["data-apps-text.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

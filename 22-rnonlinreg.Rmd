@@ -26,6 +26,10 @@ output:
 ```
 - Load the following packages
 
+```{r, include=FALSE}
+load('data/wages.RData')
+```
+
 ```{r, eval=FALSE}
 library(tidyverse)
 library(moderndive)

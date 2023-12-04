@@ -25,6 +25,19 @@ output:
 ---
 ```
 
+```{r, include=FALSE}
+poll <- immigration
+poll <- rename(poll, party = political)
+polltab <- table(poll$response, poll$party)
+
+immigration_poll <- polltab
+
+jobtrain <- nsw74psid3 %>% 
+  select(trt, re78) %>% 
+  rename(treatment = trt, earnings = re78) %>% 
+  mutate(earnings = earnings*4.1)
+```
+
 - Load the following packages
 
 ```{r, eval=FALSE}
