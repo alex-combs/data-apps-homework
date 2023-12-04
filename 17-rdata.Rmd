@@ -1,0 +1,115 @@
+# R Data
+
+## Learning Objectives
+
+In this chapter, you will learn how to:
+
+- Examine datasets to determine their dimensions, unit of analysis, and structure
+- Examine variables to determine their type
+
+## Set-up
+
+To complete this chapter, you need to
+
+- Start a R Markdown document. Keep the YAML and delete the default content in the body except for the first code chunk named `setup` containing the code `knitr::opts_chunk$set(echo = TRUE)`.
+- Use the code below to load the required packages. Start a new line inside of the `setup` code chunk you did not delete, then paste the code. Run this code chunk.
+
+```{r, eval=FALSE}
+library(tidyverse)
+library(carData)  #if this fails, you need to install the package (see RChapter 16)
+```
+
+Now that you have successfully loaded the two packages, you have access to the functions they contain as well as any data sets they contain. Many packages include data sets used for demonstrating and learning certain functions work. 
+
+Before starting the exercises, go to the `Packages` tab in the bottom-right pane. Find `carData` in the list and click on the name. This should take you to the `Help` tab, which will contain the documentation for `carData`. This page serves as a directory to all of the data sets that come loaded with the package. We will be examining some of these data sets. If you want or need to learn more about a particular data set, you can click on its name in this list. 
+
+## Viewing data sets
+
+Perhaps one of the first obstacles to using R is that you do not constantly stare at a spreadsheet, creating somewhat of a disconnect between what you do to data and seeing it done. While you do not need to view a spreadsheet to understand what you are doing to the data, it is often helpful to examine a data set in spreadsheet form when initially trying to understand its contents.
+
+You can always examine a data set in spreadsheet form any time you need to. The following information and exercises walk you through how to do so.
+
+Your environment pane (top-right) will list all data sets that have been imported during your current R session. We have not imported any data (we will learn how in a different assignment). Therefore, our environment is empty.
+
+> This will become much clearer later, but any time there is a data set in your environment that you want to view in spreadsheet form, click on its name and a new tab will appear in the top-left pane that displays the data set.
+
+Since we loaded `carData` we do have access to numerous data sets but are not immediately available in the environment pane. To view a data set included in a package, we want to copy it over to our environment.
+
+```{block, type='learncheck', purl=FALSE}
+**Exercise 1:**  Start a new code chunk below the setup code chunk in which you loaded the required packages. To do so, you can use the keyboard shortcuts `Cmd+Option+I` on Mac or `Ctrl+Option+I` on PC, or use insert code drop down menu along the top of your R Markdown pane that has a plus sign over a square with a c inside of it. If using the menu, click on the R option.
+```
+
+```{block, type='learncheck', purl=FALSE}
+**Exercise 2**  In the code chunk you just started, paste and run the code provided below, which saves a data set named `Arrests` contained within the `carData` package to your environment pane in the top-right.
+```
+
+```{r, eval=FALSE}
+arrests <- Arrests
+```
+
+```{block, type='learncheck', purl=FALSE}
+**Exercise 3**  Click on `arrests` in your environment pane. A new tab should appear that shows the spreadsheet for `arrests`. If you find yourself needing to see a spreadsheet, use this point-and-click method.
+```
+
+Now that we can view data, let's practice applying some of the concepts you read about in the Chapter 2. 
+
+The `arrests` data set contains information on arrests for possession of small amounts of marijuana in the city of Toronto. 
+
+```{block, type='learncheck', purl=FALSE}
+**Exercise 4**  Based on what you see in the spreadsheet of `arrests`, what is the structure of this data set? What is the unit of analysis? Remember to write your answer outside of a code chunk.
+```
+
+Let's examine a new data set called `Florida` which contains county voting results for the 2000 presidential election.
+
+```{block, type='learncheck', purl=FALSE}
+**Exercise 5**  Follow the same process used for viewing the `Arrests` data set to view the `Florida` data set. What is the structure and unit of analysis of the `Florida` data set? 
+```
+
+```{block, type='learncheck', purl=FALSE}
+**Exercise 6**  Do the same thing one more time with a data set named `USPop`. What is its structure and unit of analysis? 
+```
+
+## Glimpse Data
+
+A data set can contain far too many variables (columns) and observations (rows) to effectively scroll through in a spreadsheet. The `glimpse` function generates a compact printout providing key information about a data set. The general code is as follows:
+
+```{r, eval=FALSE}
+glimpse(dataset)
+```
+
+where we replace `dataset` with the name of the `dataset`.
+
+```{block, type='learncheck', purl=FALSE}
+**Exercise 7**  In an existing or new code chunk, use `glimpse` on `arrests`. 
+```
+
+Notice that the results show you the **dimensions** of the dataset--the number of rows (observation) and columns (variables). Next, it provides a vertical list of variables, with several of their values listed horizontally. This allows us to easily view a very wide dataset with many variables and export the information to a document. 
+
+```{block, type='learncheck', purl=FALSE}
+**Exercise 8**  Having now examined `arrests` as a spreadsheet and using `glimpse`, what type are the following variables based on what you read in Chapter 2 (numerical vs. categorical; continuous, discrete, ordinal, nominal)? 
+
+- year
+- age
+- sex
+```
+
+
+## Variable Types in R
+
+The column immediately to the right of the variable name in the `glimpse` printout is also informative. It tells you how each variable is stored in R. A variable can be stored in several ways:
+
+- **Integers:** commonly used for discrete variables
+- **Doubles/numerics:** commonly used for continuous variabls but can also store discrete variables
+- **Logicals:** commonly used for categorical variables that are binary (i.e. 1 or 0). In R, logicals are assigned `TRUE`, if equal to 1, or `FALSE`, if equal to 0.
+- **Factors:** commonly used for categorical variables. Factors can store categorical variables with any number of levels. Therefore, a binary variable can be stored as a factor instead of a logical if you want the variable to be assigned different values like "Yes" or "No."
+- **Characters:** commonly used for strings of text that don't fit the other storage types well, such as open-ended responses in a survey. However, any variable can be stored as a character. A numerical variable can be stored as a character and R will not recognize its values as numbers.
+
+```{block, type='learncheck', purl=FALSE}
+**Exercise 9**  Are the variables listed exercise 8 stored in R in a way that aligns with their type you identified in exercise 8?
+```
+
+Variables will not always be stored in R the way they should. Sometimes we have to tell R how to store a variable based on our own understanding of their type. This skill will be covered later.
+
+## Save and Upload
+
+Change the title in the YAML to "R Chapter 17". Knit your Rmd to save it and check for errors. If you are satisfied with your work, upload to eLC. Once you upload, answers will become available for download.
