@@ -218,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.1" data-path="6-r-regression.html"><a href="6-r-regression.html#general-syntax"><i class="fa fa-check"></i><b>6.3.1</b> General Syntax</a></li>
 <li class="chapter" data-level="6.3.2" data-path="6-r-regression.html"><a href="6-r-regression.html#continuous-outcome-and-continuous-or-categorical-explanatory-variables"><i class="fa fa-check"></i><b>6.3.2</b> Continuous outcome and continuous or categorical explanatory variables</a></li>
 <li class="chapter" data-level="6.3.3" data-path="6-r-regression.html"><a href="6-r-regression.html#interactions"><i class="fa fa-check"></i><b>6.3.3</b> Interactions</a></li>
-<li class="chapter" data-level="6.3.4" data-path="6-r-regression.html"><a href="6-r-regression.html#dummy-outcome"><i class="fa fa-check"></i><b>6.3.4</b> Dummy outcome</a></li>
+<li class="chapter" data-level="6.3.4" data-path="6-r-regression.html"><a href="6-r-regression.html#linear-probability-model-dummy-outcome"><i class="fa fa-check"></i><b>6.3.4</b> Linear Probability Model (dummy outcome)</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="6-r-regression.html"><a href="6-r-regression.html#reporting-regression-estimates"><i class="fa fa-check"></i><b>6.4</b> Reporting Regression Estimates</a>
 <ul>
@@ -327,7 +327,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Change the YAML to at least the following. Feel free to add arguments.</li>
 </ul>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="6-r-regression.html#cb80-1" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb80-2"><a href="6-r-regression.html#cb80-2" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&#39;R Chapter 21&#39;</span></span>
+<span id="cb80-2"><a href="6-r-regression.html#cb80-2" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&#39;R Chapter 6&#39;</span></span>
 <span id="cb80-3"><a href="6-r-regression.html#cb80-3" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&#39;Your name&#39;</span></span>
 <span id="cb80-4"><a href="6-r-regression.html#cb80-4" tabindex="-1"></a>output<span class="sc">:</span> </span>
 <span id="cb80-5"><a href="6-r-regression.html#cb80-5" tabindex="-1"></a>  html_document<span class="sc">:</span></span>
@@ -347,7 +347,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="running-regression" class="section level2 hasAnchor" number="6.3">
 <h2><span class="header-section-number">6.3</span> Running Regression<a href="6-r-regression.html#running-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Chapters <a href="#simple-and-multiple-regression"><strong>??</strong></a> and <a href="#categorical-variables-and-interactions"><strong>??</strong></a> cover the following regression models:</p>
+<p>By now, we have covered the following regression models:</p>
 <ul>
 <li>Simple linear regression with two numerical variables</li>
 <li>Multiple linear regression with all numerical variables</li>
@@ -373,22 +373,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="continuous-outcome-and-continuous-or-categorical-explanatory-variables" class="section level3 hasAnchor" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Continuous outcome and continuous or categorical explanatory variables<a href="6-r-regression.html#continuous-outcome-and-continuous-or-categorical-explanatory-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Recall the following multiple regression model from Chapter <a href="#simple-and-multiple-regression"><strong>??</strong></a>.</p>
-<p><span class="math display" id="eq:multregexrep">\[\begin{equation}
-FedSpend = \beta_0 + \beta_1Poverty + \beta_2HomeOwn + \beta_3Income + \epsilon
-\tag{6.1}
-\end{equation}\]</span></p>
-<p>I ran this regression using the following code:</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="6-r-regression.html#cb84-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;data/county_complete.rda&#39;</span>)</span>
-<span id="cb84-2"><a href="6-r-regression.html#cb84-2" tabindex="-1"></a></span>
-<span id="cb84-3"><a href="6-r-regression.html#cb84-3" tabindex="-1"></a>selcounty <span class="ot">&lt;-</span> county_complete <span class="sc">%&gt;%</span> </span>
-<span id="cb84-4"><a href="6-r-regression.html#cb84-4" tabindex="-1"></a>  <span class="fu">select</span>(name, state, <span class="at">fed_spend =</span> fed_spending_2009, <span class="at">poverty =</span> poverty_2010, <span class="at">homeownership =</span> homeownership_2010, <span class="at">income =</span> median_household_income_2010, pop2010) <span class="sc">%&gt;%</span> </span>
-<span id="cb84-5"><a href="6-r-regression.html#cb84-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fed_spend =</span> fed_spend<span class="sc">/</span>pop2010) <span class="sc">%&gt;%</span> </span>
-<span id="cb84-6"><a href="6-r-regression.html#cb84-6" tabindex="-1"></a>  <span class="fu">filter</span>(fed_spend <span class="sc">&lt;</span> <span class="dv">50</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb84-7"><a href="6-r-regression.html#cb84-7" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>pop2010)</span>
-<span id="cb84-8"><a href="6-r-regression.html#cb84-8" tabindex="-1"></a></span>
-<span id="cb84-9"><a href="6-r-regression.html#cb84-9" tabindex="-1"></a>fedpov2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fed_spend <span class="sc">~</span> poverty <span class="sc">+</span> homeownership <span class="sc">+</span> income, <span class="at">data =</span> selcounty)</span></code></pre></div>
-<p>That’s all there is to it. I named the model <code>fedpov2</code> to remind myself it was the second model I ran to examine the relationship between federal spending and poverty rate. Note that the code within the <code>lm</code> function mimics Equation <a href="6-r-regression.html#eq:multregexrep">(6.1)</a>. No matter if the explanatory variables happen to be numerical or categorical, the regression works the same in R. Lastly, I did some behind-the-scenes cleaning of the original <code>county</code> data discussed in Chapter <a href="#simple-and-multiple-regression"><strong>??</strong></a> and named it <code>selcounty</code>. Therefore, I told R to use that dataset when running the regression.</p>
+<p>Consider the following regression model.</p>
+<p><span class="math display">\[FedSpend = \beta_0 + \beta_1Poverty + \beta_2HomeOwn + \beta_3Income + \epsilon\]</span></p>
+<p>I can run this regression using the following code:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="6-r-regression.html#cb84-1" tabindex="-1"></a>fedpov2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fed_spend <span class="sc">~</span> poverty <span class="sc">+</span> homeownership <span class="sc">+</span> income, <span class="at">data =</span> selcounty)</span></code></pre></div>
+<p>That’s all there is to it. I named the model <code>fedpov2</code> to remind myself it was the second model I ran to examine the relationship between federal spending and poverty rate. Note that the code within the <code>lm</code> function resembles the equation above. No matter if the explanatory variables happen to be numerical or categorical, the regression works the same in R. Lastly, I told R which dataset to use, which is named <code>selcounty</code>.</p>
 <p><code>TeenPregnancy</code> is a dataset with 50 observations on the following 4 variables.</p>
 <ul>
 <li><code>State</code> State abbreviation</li>
@@ -419,14 +408,12 @@ Run this regression model.
 <div id="interactions" class="section level3 hasAnchor" number="6.3.3">
 <h3><span class="header-section-number">6.3.3</span> Interactions<a href="6-r-regression.html#interactions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Though we only cover interacting a numerical variable with a categorical variable in this course, we can interact two variables of any type using the same code. In theory, we can interact more than two variables. In any case, an interaction requires us to multiply the variables within the <code>lm</code> function.</p>
-<p>Recall the regression model from Chapter <a href="#categorical-variables-and-interactions"><strong>??</strong></a> where <code>mrall</code> is traffic fatality rate, <code>vmiles</code> is the average miles driven, and <code>jaild</code> is whether a state imposes mandatory jail for drunk driving.</p>
+<p>Consider the following regression model where <code>mrall</code> is traffic fatality rate, <code>vmiles</code> is the average miles driven, and <code>jaild</code> is whether a state imposes mandatory jail for drunk driving.</p>
 <p><span class="math display">\[\begin{equation}
 mrall = \beta_0 + \beta_1 vmiles + \beta_2 jaild + \beta_3 vmiles \times jaild + \epsilon
 \end{equation}\]</span></p>
 <p>I ran this regression using the following code</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="6-r-regression.html#cb85-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;data/trdeath.RData&#39;</span>)</span>
-<span id="cb85-2"><a href="6-r-regression.html#cb85-2" tabindex="-1"></a></span>
-<span id="cb85-3"><a href="6-r-regression.html#cb85-3" tabindex="-1"></a>interactmod <span class="ot">&lt;-</span> <span class="fu">lm</span>(mrall <span class="sc">~</span> vmiles <span class="sc">+</span> jaild <span class="sc">+</span> vmiles<span class="sc">*</span>jaild, <span class="at">data =</span> trdeath)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="6-r-regression.html#cb85-1" tabindex="-1"></a>interactmod <span class="ot">&lt;-</span> <span class="fu">lm</span>(mrall <span class="sc">~</span> vmiles <span class="sc">+</span> jaild <span class="sc">+</span> vmiles<span class="sc">*</span>jaild, <span class="at">data =</span> trdeath)</span></code></pre></div>
 <blockquote>
 <p>Note that the only difference from the code in the previous example is <code>vmiles*jaild</code>, which tells R to interact the two variables by multiplying them together. Once again, the code reflects the equation.</p>
 </blockquote>
@@ -452,17 +439,14 @@ Run this regression model.
 </p>
 </div>
 </div>
-<div id="dummy-outcome" class="section level3 hasAnchor" number="6.3.4">
-<h3><span class="header-section-number">6.3.4</span> Dummy outcome<a href="6-r-regression.html#dummy-outcome" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="linear-probability-model-dummy-outcome" class="section level3 hasAnchor" number="6.3.4">
+<h3><span class="header-section-number">6.3.4</span> Linear Probability Model (dummy outcome)<a href="6-r-regression.html#linear-probability-model-dummy-outcome" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>While a regression with a dummy variable as the outcome does not require any special coding, we do need to make sure the dummy variable is coded as 1/0 in the data. Sometimes a dummy variable will be coded like this already in which case we don’t need to do anything to run the regression. Other times, the dummy variable will be coded using text like “yes” and “no” or “Male” and “Female” in the case of a dummy variable for sex.</p>
-<p>Recall in Table <a href="#tab:trdeath"><strong>??</strong></a> the coding for <code>jaild</code> is yes/no. Also recall the regression equation <a href="#eq:lpmex">(<strong>??</strong>)</a> for the linear probability model example restated below:</p>
+<p>Consider the following regression, which is a linear probability model.</p>
 <p><span class="math display">\[Pr(jaild=1)=\beta_0+\beta_1vmiles+\beta_2region+\epsilon\]</span></p>
 <p>I ran this regression using the following code:</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="6-r-regression.html#cb86-1" tabindex="-1"></a>trdeath2 <span class="ot">&lt;-</span> trdeath <span class="sc">%&gt;%</span> </span>
-<span id="cb86-2"><a href="6-r-regression.html#cb86-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">jaild =</span> <span class="fu">if_else</span>(jaild <span class="sc">==</span> <span class="st">&#39;yes&#39;</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
-<span id="cb86-3"><a href="6-r-regression.html#cb86-3" tabindex="-1"></a></span>
-<span id="cb86-4"><a href="6-r-regression.html#cb86-4" tabindex="-1"></a>lpm_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(jaild <span class="sc">~</span> mrall <span class="sc">+</span> region, <span class="at">data =</span> trdeath2)</span></code></pre></div>
-<p>But this won’t work if we include <code>jaild</code> in our regression code without recoding it to 1/0. This can be done using the following code.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="6-r-regression.html#cb86-1" tabindex="-1"></a>lpm_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(jaild <span class="sc">~</span> mrall <span class="sc">+</span> region, <span class="at">data =</span> trdeath2)</span></code></pre></div>
+<p>The <code>jaild</code> variable is coded yes/no. The code above won’t work if we include <code>jaild</code> in our regression code without recoding it to 1/0. This can be done using the following code.</p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="6-r-regression.html#cb87-1" tabindex="-1"></a>trdeath2 <span class="ot">&lt;-</span> trdeath <span class="sc">%&gt;%</span> </span>
 <span id="cb87-2"><a href="6-r-regression.html#cb87-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">jaild =</span> <span class="fu">if_else</span>(jaild <span class="sc">==</span> <span class="st">&#39;yes&#39;</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span></code></pre></div>
 <p>This code creates a new dataset named <code>trdeath2</code> which is a copy of the <code>trdeath</code> dataset except for changing the values for <code>jaild</code> using the <code>mutate</code> verb. Inside <code>mutate</code>, I name the “new” variable <code>jaild</code>, which overwrites the existing <code>jaild</code> variable based on what follows the equal sign.</p>
@@ -614,6 +598,7 @@ income
 </tr>
 </tbody>
 </table>
+<p>where I specify which set of regression results saved earlier, <code>fedpov2</code>, inside the function.</p>
 <p>To get goodness-of-fit measures, we can use the <code>get_regression_summaries</code> function like so</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="6-r-regression.html#cb89-1" tabindex="-1"></a><span class="fu">get_regression_summaries</span>(fedpov2)</span></code></pre></div>
 <table>
@@ -715,7 +700,8 @@ rmse
 <p>
 <strong>Exercise 4:</strong> Produce a standard table of regression
 estimates and goodness-of-fit measures for each of your three regression
-models using the <code>moderndive</code> functions.
+models using the <code>moderndive</code> functions. You do not need to
+use <code>select</code> to make a smaller table.
 </p>
 </div>
 </div>

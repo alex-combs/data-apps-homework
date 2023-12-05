@@ -16,7 +16,7 @@ To complete this chapter, you need to
 
 ```{r, eval=FALSE}
 ---
-title: 'R Chapter 22'
+title: 'R Chapter 7'
 author: 'Your name'
 output: 
   html_document:
@@ -40,7 +40,7 @@ We will use the `Mroz` dataset within the `carData` package. Be sure to view the
 
 ## Quadratic term
 
-Recall the below regression model from Chapter \@ref(nonlinear-variables) that includes a squared term for `Age`, which allows our regression line to change directions once as `Age` changes. We included this term because Figure \@ref(fig:quadscatter) suggested wages initially increase with age, then decreases.
+Consider the following model that includes a squared term for `Age`, which allows our regression line to change directions once as `Age` changes. We included this term because a graph suggested wages initially increase with age, then decreases.
 
 \begin{equation}
 Wage = \beta_0 + \beta_1Age + \beta_2Age^2 + \beta_3Educ + \epsilon
@@ -64,13 +64,13 @@ get_regression_table(quad_mod) %>%
   kable(format = 'html')
 ```
 
-We need to alter the `Mroz` data slightly before running a regression. Run the following code that creates a new variable that equals 1 if `lfp` equals "yes" and 0 if `lfp` equals "no." This is necessary because our outcome variable--even though categorical--must be represented numerically in order for the regression to work.
+
+> Before attempting Exercise 1, we need to alter the `Mroz` data slightly before running a regression. Run the following code that creates a new variable that equals 1 if `lfp` equals "yes" and 0 if `lfp` equals "no." This is necessary because our outcome variable--even though categorical--must be represented numerically in order for the regression to work.
 
 ```{r, eval=FALSE}
 my_Mroz <- Mroz %>% 
   mutate(lfp_numeric = if_else(lfp == "yes", 1, 0))
 ```
-
 
 ```{block, type='learncheck', purl=FALSE}
 **Exercise 1:** Suppose we want to examine factors that explain whether married women participate in the labor force, which is a binary outcome. We use the following model:
@@ -84,7 +84,7 @@ Run this regression model and obtain the results.
 
 ## Log Transformation
 
-In Chapter \@ref(nonlinear-variables), the following log-log regression model was run.
+Consider the following log-log regression model.
 
 \begin{equation}
 ln(LifeExp)=\beta_0 + \beta_1ln(GDPpercap) + \beta_2Continent + \epsilon
@@ -115,7 +115,7 @@ get_regression_table(loglog) %>%
 lfp = \beta_0 + \beta_1k5 + \beta_2age + \beta_3age^2 + \beta_4wc + \beta_5lwg + \beta_6ln(inc) + \epsilon
 \end{equation}
 
-Run this regression model and obtain the results.
+Run this regression model and print the results.
 ```
 
 ## Save and Upload

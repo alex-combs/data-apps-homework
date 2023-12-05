@@ -20,7 +20,7 @@ To complete this chapter, you need to
 
 ```{r, eval=FALSE}
 ---
-title: 'R Chapter 21'
+title: 'R Chapter 6'
 author: 'Your name'
 output: 
   html_document:
@@ -48,7 +48,7 @@ Be sure to view the documentation for these data by clicking on the package name
 
 ## Running Regression
 
-Chapters \@ref(simple-and-multiple-regression) and \@ref(categorical-variables-and-interactions) cover the following regression models:
+By now, we have covered the following regression models:
 
 - Simple linear regression with two numerical variables
 - Multiple linear regression with all numerical variables
@@ -75,16 +75,13 @@ new_object_name <- lm(outcome ~ exp_1 + exp_2 + ... + exp_k, data = name_of_data
 
 ### Continuous outcome and continuous or categorical explanatory variables
 
-Recall the following multiple regression model from Chapter \@ref(simple-and-multiple-regression).
+Consider the following regression model.
 
-\begin{equation}
-FedSpend = \beta_0 + \beta_1Poverty + \beta_2HomeOwn + \beta_3Income + \epsilon
-(\#eq:multregexrep)
-\end{equation}
+$$FedSpend = \beta_0 + \beta_1Poverty + \beta_2HomeOwn + \beta_3Income + \epsilon$$
 
-I ran this regression using the following code:
+I can run this regression using the following code:
 
-```{r}
+```{r, include=FALSE}
 load('data/county_complete.rda')
 
 selcounty <- county_complete %>% 
@@ -92,11 +89,13 @@ selcounty <- county_complete %>%
   mutate(fed_spend = fed_spend/pop2010) %>% 
   filter(fed_spend < 50) %>% 
   select(-pop2010)
+```
 
+```{r}
 fedpov2 <- lm(fed_spend ~ poverty + homeownership + income, data = selcounty)
 ```
 
-That's all there is to it. I named the model `fedpov2` to remind myself it was the second model I ran to examine the relationship between federal spending and poverty rate. Note that the code within the `lm` function mimics Equation \@ref(eq:multregexrep). No matter if the explanatory variables happen to be numerical or categorical, the regression works the same in R. Lastly, I did some behind-the-scenes cleaning of the original `county` data discussed in Chapter \@ref(simple-and-multiple-regression) and named it `selcounty`. Therefore, I told R to use that dataset when running the regression.
+That's all there is to it. I named the model `fedpov2` to remind myself it was the second model I ran to examine the relationship between federal spending and poverty rate. Note that the code within the `lm` function resembles the equation above. No matter if the explanatory variables happen to be numerical or categorical, the regression works the same in R. Lastly, I told R which dataset to use, which is named `selcounty`.
 
 `TeenPregnancy` is a dataset with 50 observations on the following 4 variables.
 
@@ -123,7 +122,7 @@ teenpreg <- lm(Teen ~ Church + CivilWar, data = TeenPregnancy)
 
 Though we only cover interacting a numerical variable with a categorical variable in this course, we can interact two variables of any type using the same code. In theory, we can interact more than two variables. In any case, an interaction requires us to multiply the variables within the `lm` function.
 
-Recall the regression model from Chapter \@ref(categorical-variables-and-interactions) where `mrall` is traffic fatality rate, `vmiles` is the average miles driven, and `jaild` is whether a state imposes mandatory jail for drunk driving.
+Consider the following regression model where `mrall` is traffic fatality rate, `vmiles` is the average miles driven, and `jaild` is whether a state imposes mandatory jail for drunk driving.
 
 \begin{equation}
 mrall = \beta_0 + \beta_1 vmiles + \beta_2 jaild + \beta_3 vmiles \times jaild + \epsilon
@@ -131,9 +130,11 @@ mrall = \beta_0 + \beta_1 vmiles + \beta_2 jaild + \beta_3 vmiles \times jaild +
 
 I ran this regression using the following code
 
-```{r, results='hide'}
+```{r, include=FALSE}
 load('data/trdeath.RData')
+```
 
+```{r, results='hide'}
 interactmod <- lm(mrall ~ vmiles + jaild + vmiles*jaild, data = trdeath)
 ```
 
@@ -152,26 +153,28 @@ Run this regression model.
 ```
 
 
-### Dummy outcome
+### Linear Probability Model (dummy outcome)
 
 While a regression with a dummy variable as the outcome does not require any special coding, we do need to make sure the dummy variable is coded as 1/0 in the data. Sometimes a dummy variable will be coded like this already in which case we don't need to do anything to run the regression. Other times, the dummy variable will be coded using text like "yes" and "no" or "Male" and "Female" in the case of a dummy variable for sex.
 
-Recall in Table \@ref(tab:trdeath) the coding for `jaild` is yes/no. Also recall the regression equation \@ref(eq:lpmex) for the linear probability model example restated below:
+Consider the following regression, which is a linear probability model.
 
 $$Pr(jaild=1)=\beta_0+\beta_1vmiles+\beta_2region+\epsilon$$
 
 I ran this regression using the following code:
 
-```{r}
+```{r, include=FALSE}
 trdeath2 <- trdeath %>% 
   mutate(jaild = if_else(jaild == 'yes', 1, 0))
+```
 
+```{r}
 lpm_mod <- lm(jaild ~ mrall + region, data = trdeath2)
 ```
 
-But this won't work if we include `jaild` in our regression code without recoding it to 1/0. This can be done using the following code.
+The `jaild` variable is coded yes/no. The code above won't work if we include `jaild` in our regression code without recoding it to 1/0. This can be done using the following code.
 
-```{r}
+```{r, eval=FALSE}
 trdeath2 <- trdeath %>% 
   mutate(jaild = if_else(jaild == 'yes', 1, 0))
 ```
@@ -207,6 +210,8 @@ get_regression_table(fedpov2) %>%
   kable(format = 'html')
 ```
 
+where I specify which set of regression results saved earlier, `fedpov2`, inside the function.
+
 To get goodness-of-fit measures, we can use the `get_regression_summaries` function like so
 
 ```{r, eval=FALSE}
@@ -232,7 +237,7 @@ get_regression_summaries(fedpov2) %>%
 ```
 
 ```{block, type='learncheck', purl=FALSE}
-**Exercise 4:** Produce a standard table of regression estimates and goodness-of-fit measures for each of your three regression models using the `moderndive` functions.
+**Exercise 4:** Produce a standard table of regression estimates and goodness-of-fit measures for each of your three regression models using the `moderndive` functions. You do not need to use `select` to make a smaller table. 
 ```
 
 ### Base R

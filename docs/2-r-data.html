@@ -218,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.1" data-path="6-r-regression.html"><a href="6-r-regression.html#general-syntax"><i class="fa fa-check"></i><b>6.3.1</b> General Syntax</a></li>
 <li class="chapter" data-level="6.3.2" data-path="6-r-regression.html"><a href="6-r-regression.html#continuous-outcome-and-continuous-or-categorical-explanatory-variables"><i class="fa fa-check"></i><b>6.3.2</b> Continuous outcome and continuous or categorical explanatory variables</a></li>
 <li class="chapter" data-level="6.3.3" data-path="6-r-regression.html"><a href="6-r-regression.html#interactions"><i class="fa fa-check"></i><b>6.3.3</b> Interactions</a></li>
-<li class="chapter" data-level="6.3.4" data-path="6-r-regression.html"><a href="6-r-regression.html#dummy-outcome"><i class="fa fa-check"></i><b>6.3.4</b> Dummy outcome</a></li>
+<li class="chapter" data-level="6.3.4" data-path="6-r-regression.html"><a href="6-r-regression.html#linear-probability-model-dummy-outcome"><i class="fa fa-check"></i><b>6.3.4</b> Linear Probability Model (dummy outcome)</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="6-r-regression.html"><a href="6-r-regression.html#reporting-regression-estimates"><i class="fa fa-check"></i><b>6.4</b> Reporting Regression Estimates</a>
 <ul>
@@ -321,7 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Use the code below to load the required packages. Start a new line inside of the <code>setup</code> code chunk you did not delete, then paste the code. Run this code chunk.</li>
 </ul>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="2-r-data.html#cb5-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb5-2"><a href="2-r-data.html#cb5-2" tabindex="-1"></a><span class="fu">library</span>(carData)  <span class="co">#if this fails, you need to install the package (see RChapter 16)</span></span></code></pre></div>
+<span id="cb5-2"><a href="2-r-data.html#cb5-2" tabindex="-1"></a><span class="fu">library</span>(carData)  <span class="co">#if this fails, you need to install the package (see R Chapter 1)</span></span></code></pre></div>
 <p>Now that you have successfully loaded the two packages, you have access to the functions they contain as well as any data sets they contain. Many packages include data sets used for demonstrating and learning certain functions work.</p>
 <p>Before starting the exercises, go to the <code>Packages</code> tab in the bottom-right pane. Find <code>carData</code> in the list and click on the name. This should take you to the <code>Help</code> tab, which will contain the documentation for <code>carData</code>. This page serves as a directory to all of the data sets that come loaded with the package. We will be examining some of these data sets. If you want or need to learn more about a particular data set, you can click on its name in this list.</p>
 </div>
@@ -361,7 +361,7 @@ environment pane. A new tab should appear that shows the spreadsheet for
 use this point-and-click method.
 </p>
 </div>
-<p>Now that we can view data, let’s practice applying some of the concepts you read about in the Chapter 2.</p>
+<p>Now that we can view data, let’s practice applying some of the concepts.</p>
 <p>The <code>arrests</code> data set contains information on arrests for possession of small amounts of marijuana in the city of Toronto.</p>
 <div class="learncheck">
 <p>
@@ -404,8 +404,8 @@ analysis?
 <p>
 <strong>Exercise 8</strong> Having now examined <code>arrests</code>
 as a spreadsheet and using <code>glimpse</code>, what type are the
-following variables based on what you read in Chapter 2 (numerical
-vs. categorical; continuous, discrete, ordinal, nominal)?
+following variables (numerical vs. categorical; continuous, discrete,
+ordinal, nominal)?
 </p>
 <ul>
 <li>
@@ -441,7 +441,7 @@ exercise 8?
 </div>
 <div id="save-and-upload-1" class="section level2 hasAnchor" number="2.6">
 <h2><span class="header-section-number">2.6</span> Save and Upload<a href="2-r-data.html#save-and-upload-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Change the title in the YAML to “R Chapter 17”. Knit your Rmd to save it and check for errors. If you are satisfied with your work, upload to eLC. Once you upload, answers will become available for download.</p>
+<p>Change the title in the YAML to “R Chapter 2”. Knit your Rmd to save it and check for errors. If you are satisfied with your work, upload to eLC. Once you upload, answers will become available for download.</p>
 
 </div>
 </div>

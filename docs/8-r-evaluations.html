@@ -218,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.1" data-path="6-r-regression.html"><a href="6-r-regression.html#general-syntax"><i class="fa fa-check"></i><b>6.3.1</b> General Syntax</a></li>
 <li class="chapter" data-level="6.3.2" data-path="6-r-regression.html"><a href="6-r-regression.html#continuous-outcome-and-continuous-or-categorical-explanatory-variables"><i class="fa fa-check"></i><b>6.3.2</b> Continuous outcome and continuous or categorical explanatory variables</a></li>
 <li class="chapter" data-level="6.3.3" data-path="6-r-regression.html"><a href="6-r-regression.html#interactions"><i class="fa fa-check"></i><b>6.3.3</b> Interactions</a></li>
-<li class="chapter" data-level="6.3.4" data-path="6-r-regression.html"><a href="6-r-regression.html#dummy-outcome"><i class="fa fa-check"></i><b>6.3.4</b> Dummy outcome</a></li>
+<li class="chapter" data-level="6.3.4" data-path="6-r-regression.html"><a href="6-r-regression.html#linear-probability-model-dummy-outcome"><i class="fa fa-check"></i><b>6.3.4</b> Linear Probability Model (dummy outcome)</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="6-r-regression.html"><a href="6-r-regression.html#reporting-regression-estimates"><i class="fa fa-check"></i><b>6.4</b> Reporting Regression Estimates</a>
 <ul>
@@ -321,7 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Change the YAML to at least the following. Feel free to add arguments.</li>
 </ul>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="8-r-evaluations.html#cb102-1" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb102-2"><a href="8-r-evaluations.html#cb102-2" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&#39;R Chapter 23&#39;</span></span>
+<span id="cb102-2"><a href="8-r-evaluations.html#cb102-2" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&#39;R Chapter 8&#39;</span></span>
 <span id="cb102-3"><a href="8-r-evaluations.html#cb102-3" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&#39;Your name&#39;</span></span>
 <span id="cb102-4"><a href="8-r-evaluations.html#cb102-4" tabindex="-1"></a>output<span class="sc">:</span> </span>
 <span id="cb102-5"><a href="8-r-evaluations.html#cb102-5" tabindex="-1"></a>  html_document<span class="sc">:</span></span>
@@ -338,17 +338,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="chi-square-test" class="section level2 hasAnchor" number="8.3">
 <h2><span class="header-section-number">8.3</span> Chi-square test<a href="8-r-evaluations.html#chi-square-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A chi-square test, like the one demonstrated in Chapter <a href="#hypothesis-testing"><strong>??</strong></a>, requires two steps:</p>
+<p>A chi-square test, requires two steps:</p>
 <ul>
 <li>Create a cross-tabulation table using the <code>table</code> function</li>
 <li>Run the chi-square on the cross-tabulation using the <code>chisq.test</code> function</li>
 </ul>
 <div id="cross-tab" class="section level3 hasAnchor" number="8.3.1">
 <h3><span class="header-section-number">8.3.1</span> Cross-tab<a href="8-r-evaluations.html#cross-tab" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Below is the code used to produce the cross-tab from Chapter <a href="#hypothesis-testing"><strong>??</strong></a>. I save the new table as <code>polltable</code>. Using the <code>table</code> function, I tell R which two variables from the <code>poll</code> dataset to cross-tabulate. The <code>$</code> is how we identify a specific variable within a dataset. The levels of the first variable, <code>response</code>, will be tabulated by row, while the frequency of the levels of the second variable, <code>party</code>, will be tabulated by column.</p>
+<p>Below is the code used to produce a cross-tab. I save the new table as <code>polltable</code>. Using the <code>table</code> function, I tell R which two variables from the <code>poll</code> dataset to cross-tabulate. The <code>$</code> is how we identify a specific variable within a dataset. The levels of the first variable, <code>response</code>, will be tabulated by row, while the frequency of the levels of the second variable, <code>party</code>, will be tabulated by column.</p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="8-r-evaluations.html#cb104-1" tabindex="-1"></a>polltable <span class="ot">&lt;-</span> <span class="fu">table</span>(poll<span class="sc">$</span>response, poll<span class="sc">$</span>party)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-131">Table 8.1: </span>Response by political party</caption>
+<caption><span id="tab:unnamed-chunk-134">Table 8.1: </span>Response by political party</caption>
 <thead>
 <tr class="header">
 <th align="left"></th>
@@ -408,18 +408,18 @@ be used. Run this chi-square test.
 </div>
 <div class="learncheck">
 <p>
-<strong>Exercise 2:</strong> Are the two variables independent?
-Why?
+<strong>Exercise 2:</strong> Are the two variables independent? Why
+or why not?
 </p>
 </div>
 </div>
 </div>
 <div id="t-tests" class="section level2 hasAnchor" number="8.4">
 <h2><span class="header-section-number">8.4</span> T-tests<a href="8-r-evaluations.html#t-tests" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>To reiterate, if the two groups in a t-test are comprised of different subjects, we use an independent t-test. If they are comprised of the same subjects, then we use a dependent t-test.</p>
+<p>If two groups in a t-test are comprised of different subjects, we use an independent t-test. If they are comprised of the same subjects, then we use a dependent t-test.</p>
 <div id="independent-t-test" class="section level3 hasAnchor" number="8.4.1">
 <h3><span class="header-section-number">8.4.1</span> Independent t-test<a href="8-r-evaluations.html#independent-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The code below demonstrates how the independent t-test from Chapter <a href="#hypothesis-testing"><strong>??</strong></a> was conducted. The <code>t.test</code> function works a lot like the <code>lm</code> function in that the outcome is entered first, then we input the variable that identifies the groups, which is essentially an explanatory variable. The two variables are separated by <code>~</code>. Then, we tell R which dataset to use, which is called <code>jobtrain</code> in this case.</p>
+<p>The code below demonstrates an independent t-test. The <code>t.test</code> function works a lot like the <code>lm</code> function in that the outcome is entered first, then we input the variable that identifies the groups, which is essentially an explanatory variable. The two variables are separated by <code>~</code>. Then, we tell R which dataset to use, which is called <code>jobtrain</code> in this case.</p>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="8-r-evaluations.html#cb108-1" tabindex="-1"></a><span class="fu">t.test</span>(earnings <span class="sc">~</span> treatment, <span class="at">data =</span> jobtrain)</span></code></pre></div>
 <pre><code>
     Welch Two Sample t-test
@@ -444,7 +444,7 @@ nominal. Therefore, a t-test can be used. Run this t-test.
 <div class="learncheck">
 <p>
 <strong>Exercise 4:</strong> Is there an association between the two
-variables? Why?
+variables? Why or why not?
 </p>
 </div>
 </div>

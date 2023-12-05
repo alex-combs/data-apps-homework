@@ -16,7 +16,7 @@ To complete this chapter, you need to
 
 ```{r, eval=FALSE}
 ---
-title: 'R Chapter 23'
+title: 'R Chapter 8'
 author: 'Your name'
 output: 
   html_document:
@@ -50,14 +50,14 @@ For the chi-square test, we will use the `MplsStops` dataset within the `carData
 
 ## Chi-square test
 
-A chi-square test, like the one demonstrated in Chapter \@ref(hypothesis-testing), requires two steps:
+A chi-square test, requires two steps:
 
 - Create a cross-tabulation table using the `table` function
 - Run the chi-square on the cross-tabulation using the `chisq.test` function
 
 ### Cross-tab
 
-Below is the code used to produce the cross-tab from Chapter \@ref(hypothesis-testing). I save the new table as `polltable`. Using the `table` function, I tell R which two variables from the `poll` dataset to cross-tabulate. The `$` is how we identify a specific variable within a dataset. The levels of the first variable, `response`, will be tabulated by row, while the frequency of the levels of the second variable, `party`, will be tabulated by column. 
+Below is the code used to produce a cross-tab. I save the new table as `polltable`. Using the `table` function, I tell R which two variables from the `poll` dataset to cross-tabulate. The `$` is how we identify a specific variable within a dataset. The levels of the first variable, `response`, will be tabulated by row, while the frequency of the levels of the second variable, `party`, will be tabulated by column. 
 
 ```{r, eval=FALSE}
 polltable <- table(poll$response, poll$party)
@@ -83,16 +83,16 @@ Then, it is simply a matter of interpreting the results.
 ```
 
 ```{block, type='learncheck', purl=FALSE}
-**Exercise 2:** Are the two variables independent? Why?
+**Exercise 2:** Are the two variables independent? Why or why not?
 ```
 
 ## T-tests
 
-To reiterate, if the two groups in a t-test are comprised of different subjects, we use an independent t-test. If they are comprised of the same subjects, then we use a dependent t-test.
+If two groups in a t-test are comprised of different subjects, we use an independent t-test. If they are comprised of the same subjects, then we use a dependent t-test.
 
 ### Independent t-test
 
-The code below demonstrates how the independent t-test from Chapter \@ref(hypothesis-testing) was conducted. The `t.test` function works a lot like the `lm` function in that the outcome is entered first, then we input the variable that identifies the groups, which is essentially an explanatory variable. The two variables are separated by `~`. Then, we tell R which dataset to use, which is called `jobtrain` in this case.
+The code below demonstrates an independent t-test. The `t.test` function works a lot like the `lm` function in that the outcome is entered first, then we input the variable that identifies the groups, which is essentially an explanatory variable. The two variables are separated by `~`. Then, we tell R which dataset to use, which is called `jobtrain` in this case.
 
 ```{r}
 t.test(earnings ~ treatment, data = jobtrain)
@@ -103,7 +103,7 @@ t.test(earnings ~ treatment, data = jobtrain)
 ```
 
 ```{block, type='learncheck', purl=FALSE}
-**Exercise 4:** Is there an association between the two variables? Why?
+**Exercise 4:** Is there an association between the two variables? Why or why not?
 ```
 
 ### Dependent t-test

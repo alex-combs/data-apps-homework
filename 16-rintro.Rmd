@@ -71,11 +71,11 @@ output: html_document
 - Body: where you write prose and code. Your current R Markdown document likely opened with some content already in the body. Feel free to read this content, as it is informative.
 
 ```{block, type='learncheck', purl=FALSE}
-**Exercise 3** In the YAML, change the title to "R Chapter 16".
+**Exercise 3** In the YAML, change the title to "R Chapter 1".
 ```
 
 ```{block, type='learncheck', purl=FALSE}
-**Exercise 4** Click on the `Knit` button at the top of the source editor pane (looks like a ball of yarn with a needle stuck in it. If a drop down menu appears, click on `Knit to HTML`. RStudio will then prompt you to save your document. Save your R Markdown file, naming it according to the following convention (`yourlastname_rch16`). R will start to process your document and a new window will appear that contains your export document. You want to take some time to consider how the code and prose in the R Markdown document relates to the content you see in the exported html document. You can close this new window once you are finished viewing it. Feel free to test `Knit to Word` if your computer has Microsoft Word installed. `Knit to PDF` will not yet work. RStudio saves your R Markdown document every time you knit.
+**Exercise 4** Click on the `Knit` button at the top of the source editor pane (looks like a ball of yarn with a needle stuck in it. If a drop down menu appears, click on `Knit to HTML`. RStudio will then prompt you to save your document. Save your R Markdown file, naming it according to the following convention (`yourlastname_rch1`). R will start to process your document and a new window will appear that contains your export document. You want to take some time to consider how the code and prose in the R Markdown document relates to the content you see in the exported html document. You can close this new window once you are finished viewing it. Feel free to test `Knit to Word` if your computer has Microsoft Word installed. `Knit to PDF` will not yet work. RStudio saves your R Markdown document every time you knit.
 ```
 
 ### R Packages
@@ -172,7 +172,7 @@ Save your document once more either by knitting again or like any other software
 
 ## Additional Resources
 
-There are many resources that provide orientations to R. Below are two that I consider particularly helpful and accessible.
+There are many resources that provide orientations to R. Below are two.
 
 - Chapters 1-3 of [Getting Used to R, RStudio, and R Markdown](https://rbasics.netlify.app/index.html)
 - [BasicBasics of RYouWithMe](https://rladiessydney.org/courses/ryouwithme/01-basicbasics-0/) by R-Ladies Sydney

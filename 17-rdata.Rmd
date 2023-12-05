@@ -16,7 +16,7 @@ To complete this chapter, you need to
 
 ```{r, eval=FALSE}
 library(tidyverse)
-library(carData)  #if this fails, you need to install the package (see RChapter 16)
+library(carData)  #if this fails, you need to install the package (see R Chapter 1)
 ```
 
 Now that you have successfully loaded the two packages, you have access to the functions they contain as well as any data sets they contain. Many packages include data sets used for demonstrating and learning certain functions work. 
@@ -51,7 +51,7 @@ arrests <- Arrests
 **Exercise 3**  Click on `arrests` in your environment pane. A new tab should appear that shows the spreadsheet for `arrests`. If you find yourself needing to see a spreadsheet, use this point-and-click method.
 ```
 
-Now that we can view data, let's practice applying some of the concepts you read about in the Chapter 2. 
+Now that we can view data, let's practice applying some of the concepts. 
 
 The `arrests` data set contains information on arrests for possession of small amounts of marijuana in the city of Toronto. 
 
@@ -86,7 +86,7 @@ where we replace `dataset` with the name of the `dataset`.
 Notice that the results show you the **dimensions** of the dataset--the number of rows (observation) and columns (variables). Next, it provides a vertical list of variables, with several of their values listed horizontally. This allows us to easily view a very wide dataset with many variables and export the information to a document. 
 
 ```{block, type='learncheck', purl=FALSE}
-**Exercise 8**  Having now examined `arrests` as a spreadsheet and using `glimpse`, what type are the following variables based on what you read in Chapter 2 (numerical vs. categorical; continuous, discrete, ordinal, nominal)? 
+**Exercise 8**  Having now examined `arrests` as a spreadsheet and using `glimpse`, what type are the following variables (numerical vs. categorical; continuous, discrete, ordinal, nominal)? 
 
 - year
 - age
@@ -112,4 +112,4 @@ Variables will not always be stored in R the way they should. Sometimes we have 
 
 ## Save and Upload
 
-Change the title in the YAML to "R Chapter 17". Knit your Rmd to save it and check for errors. If you are satisfied with your work, upload to eLC. Once you upload, answers will become available for download.
+Change the title in the YAML to "R Chapter 2". Knit your Rmd to save it and check for errors. If you are satisfied with your work, upload to eLC. Once you upload, answers will become available for download.

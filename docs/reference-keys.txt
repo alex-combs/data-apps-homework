@@ -4,8 +4,7 @@ tab:unnamed-chunk-58
 tab:unnamed-chunk-61
 fig:gradmedhistrep
 fig:gradmedboxrep
-eq:multregexrep
-tab:unnamed-chunk-131
+tab:unnamed-chunk-134
 r-chapter-introduction
 what-is-r-and-rstudio
 installing-r-and-rstudio
@@ -62,7 +61,7 @@ running-regression
 general-syntax
 continuous-outcome-and-continuous-or-categorical-explanatory-variables
 interactions
-dummy-outcome
+linear-probability-model-dummy-outcome
 reporting-regression-estimates
 moderndive
 base-r

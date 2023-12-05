@@ -218,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.1" data-path="6-r-regression.html"><a href="6-r-regression.html#general-syntax"><i class="fa fa-check"></i><b>6.3.1</b> General Syntax</a></li>
 <li class="chapter" data-level="6.3.2" data-path="6-r-regression.html"><a href="6-r-regression.html#continuous-outcome-and-continuous-or-categorical-explanatory-variables"><i class="fa fa-check"></i><b>6.3.2</b> Continuous outcome and continuous or categorical explanatory variables</a></li>
 <li class="chapter" data-level="6.3.3" data-path="6-r-regression.html"><a href="6-r-regression.html#interactions"><i class="fa fa-check"></i><b>6.3.3</b> Interactions</a></li>
-<li class="chapter" data-level="6.3.4" data-path="6-r-regression.html"><a href="6-r-regression.html#dummy-outcome"><i class="fa fa-check"></i><b>6.3.4</b> Dummy outcome</a></li>
+<li class="chapter" data-level="6.3.4" data-path="6-r-regression.html"><a href="6-r-regression.html#linear-probability-model-dummy-outcome"><i class="fa fa-check"></i><b>6.3.4</b> Linear Probability Model (dummy outcome)</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="6-r-regression.html"><a href="6-r-regression.html#reporting-regression-estimates"><i class="fa fa-check"></i><b>6.4</b> Reporting Regression Estimates</a>
 <ul>
@@ -321,7 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Change the YAML to at least the following. Feel free to add arguments.</li>
 </ul>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="7-r-nonlinear-regression.html#cb95-1" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb95-2"><a href="7-r-nonlinear-regression.html#cb95-2" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&#39;R Chapter 22&#39;</span></span>
+<span id="cb95-2"><a href="7-r-nonlinear-regression.html#cb95-2" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&#39;R Chapter 7&#39;</span></span>
 <span id="cb95-3"><a href="7-r-nonlinear-regression.html#cb95-3" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&#39;Your name&#39;</span></span>
 <span id="cb95-4"><a href="7-r-nonlinear-regression.html#cb95-4" tabindex="-1"></a>output<span class="sc">:</span> </span>
 <span id="cb95-5"><a href="7-r-nonlinear-regression.html#cb95-5" tabindex="-1"></a>  html_document<span class="sc">:</span></span>
@@ -338,7 +338,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="quadratic-term" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Quadratic term<a href="7-r-nonlinear-regression.html#quadratic-term" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Recall the below regression model from Chapter <a href="#nonlinear-variables"><strong>??</strong></a> that includes a squared term for <code>Age</code>, which allows our regression line to change directions once as <code>Age</code> changes. We included this term because Figure <a href="#fig:quadscatter"><strong>??</strong></a> suggested wages initially increase with age, then decreases.</p>
+<p>Consider the following model that includes a squared term for <code>Age</code>, which allows our regression line to change directions once as <code>Age</code> changes. We included this term because a graph suggested wages initially increase with age, then decreases.</p>
 <p><span class="math display">\[\begin{equation}
 Wage = \beta_0 + \beta_1Age + \beta_2Age^2 + \beta_3Educ + \epsilon
 \end{equation}\]</span></p>
@@ -468,7 +468,9 @@ Educ
 </tr>
 </tbody>
 </table>
-<p>We need to alter the <code>Mroz</code> data slightly before running a regression. Run the following code that creates a new variable that equals 1 if <code>lfp</code> equals “yes” and 0 if <code>lfp</code> equals “no.” This is necessary because our outcome variable–even though categorical–must be represented numerically in order for the regression to work.</p>
+<blockquote>
+<p>Before attempting Exercise 1, we need to alter the <code>Mroz</code> data slightly before running a regression. Run the following code that creates a new variable that equals 1 if <code>lfp</code> equals “yes” and 0 if <code>lfp</code> equals “no.” This is necessary because our outcome variable–even though categorical–must be represented numerically in order for the regression to work.</p>
+</blockquote>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="7-r-nonlinear-regression.html#cb99-1" tabindex="-1"></a>my_Mroz <span class="ot">&lt;-</span> Mroz <span class="sc">%&gt;%</span> </span>
 <span id="cb99-2"><a href="7-r-nonlinear-regression.html#cb99-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lfp_numeric =</span> <span class="fu">if_else</span>(lfp <span class="sc">==</span> <span class="st">&quot;yes&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span></code></pre></div>
 <div class="learncheck">
@@ -490,7 +492,7 @@ Run this regression model and obtain the results.
 </div>
 <div id="log-transformation" class="section level2 hasAnchor" number="7.4">
 <h2><span class="header-section-number">7.4</span> Log Transformation<a href="7-r-nonlinear-regression.html#log-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In Chapter <a href="#nonlinear-variables"><strong>??</strong></a>, the following log-log regression model was run.</p>
+<p>Consider the following log-log regression model.</p>
 <p><span class="math display">\[\begin{equation}
 ln(LifeExp)=\beta_0 + \beta_1ln(GDPpercap) + \beta_2Continent + \epsilon
 \end{equation}\]</span></p>
@@ -679,7 +681,7 @@ lfp = \beta_0 + \beta_1k5 + \beta_2age + \beta_3age^2 + \beta_4wc +
 \end{equation}\]</span></span>
 </p>
 <p>
-Run this regression model and obtain the results.
+Run this regression model and print the results.
 </p>
 </div>
 </div>

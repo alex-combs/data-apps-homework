@@ -16,7 +16,7 @@ To complete this chapter, you need to
 
 ```{r, eval=FALSE}
 ---
-title: 'R Chapter 19'
+title: 'R Chapter 4'
 author: 'Your name'
 output: 
   html_document:
@@ -129,12 +129,12 @@ Therefore, in the above code I use the `labels` function on the `sum.gapminder` 
 summary(sum.gapminder, title = "Summary Stats for Gapminder Data")
 ```
 
-This last line of code actually prints the summary table when I knit my document. The previous two steps (`tableby` and `labels`) can be included in the same code chunk, but **this third step needs to have its own code chunk because**
+This last line of code actually prints the summary table when I knit my document.
 
-> you need to include a specific code chunk option, `results='asis'`, in order for the table to export properly. To be clear, in the top line of a code chunk that contains `{r}` by default, you need to change it to `{r, results='asis', echo=FALSE}`. I also include the `echo=FALSE` option assuming we do not want our reader to see our code.
+> You need to include a specific code chunk option, `results='asis'`, in order for the table to print properly when knit. To be clear, in the top line of a code chunk that contains `{r}` by default, you need to change it to `{r, results='asis', echo=FALSE}`. I also include the `echo=FALSE` option assuming we do not want our reader to see our code.
 
 ```{block, type='learncheck', purl=FALSE}
-**Exercise 4:**  Replicate the code shown above to create a summary table for the `States` data using the Arsenal package. Be sure to relabel the variables to something relatively understandable and brief. Labeling is tedious but you only need to do it once. I suggest you knit your document now to see what you just made.
+**Exercise 4:**  Replicate the code shown above to create a summary table for the `States` data using the Arsenal package. Be sure to relabel the variables to something relatively understandable and brief. Labeling is tedious but you only need to do it once. I suggest you knit your document now to see what you just made. If your table does not look as intended, check whether you remembered to include the code chunk option discussed immediately above.
 ```
 
 In three relatively short bits of code, we already have a decent summary table that would have taken excruciatingly long to input manually. But it can be made better.
@@ -158,7 +158,7 @@ summary(sum.gapminder2, title = "Summary Stats for Gapminder Data")
 ```
 
 ```{block, type='learncheck', purl=FALSE}
-**Exercise 5:**  Replicate the code shown above to create a second summary table for the `States` data with no decimals. Note that you can simply copy-and-paste the labels code.
+**Exercise 5:**  Replicate the code shown above to create a second summary table for the `States` data with no decimals. Note that you can simply copy-and-paste your labels to apply them to this second table.
 ```
 
 #### Reporting median and IQR
@@ -203,7 +203,7 @@ summary(sum.gapminder4, title = "Summary Stats for Gapminder Data")
 
 ### Export to CSV
 
-Knitting your notebook to HTML, Word, or PDF should produce a summary table in the appropriate format. Depending on our or others' workflow, we may want to export our summary table to CSV in order to open in Excel or other spreadsheet software. Arsenal can easily handle this.
+Knitting your Rmd to HTML, Word, or PDF should produce a summary table in the appropriate format. Depending on our or others' workflow, we may want to export our summary table to CSV in order to open in Excel or other spreadsheet software. Arsenal can easily handle this.
 
 To export my `gapminder` summary to CSV, I need to create a new object that contains the actual summary table. Below, I save the last summary to the object named `sum.table`.
 
@@ -223,11 +223,11 @@ Lastly, I just need to save this data frame as a CSV file using the `write.csv()
 write.csv(sum.table, file = "sumtable.csv")
 ```
 
-R will save the CSV file to my project folder. Otherwise, R will save the file to my current working directory.
+R will save the CSV file to my project folder or my current working directory.
 
 ## Correlation Coefficient
 
-As mentioned in Chapter \@ref(descriptive-statistics), the correlation coefficient quantifies the direction and strength of association between two numerical variables. It is rare to see correlations used in any table. Instead, correlations are typically used as an exploratory tool to inform a more advanced analysis like regression. Nevertheless, we may want to report a specific correlation coefficient in our prose.
+The correlation coefficient quantifies the direction and strength of association between two numerical variables. It is rare to see correlations used in any table. Instead, correlations are typically used as an exploratory tool to inform a more advanced analysis like regression. Nevertheless, we may want to report a specific correlation coefficient in our prose.
 
 To calculate the correlation coefficient between two variables, we can use the `cor()` function like so:
 

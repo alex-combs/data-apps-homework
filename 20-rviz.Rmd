@@ -10,8 +10,6 @@ In this chapter you will learn how to make the following visualizations:
 - Line graph
 - Scatter plot
 
-The code used to make the above visualizations in \@ref(data-visualization) will be provided and explained. Then, you will be asked to replicate the visualization using different data.
-
 ## Set-up
 
 To complete this chapter, you need to
@@ -21,7 +19,7 @@ To complete this chapter, you need to
 
 ```{r, eval=FALSE}
 ---
-title: 'R Chapter 20'
+title: 'R Chapter 5'
 author: 'Your name'
 output: 
   html_document:
@@ -110,7 +108,7 @@ Categorical variables:
 
 ## Histogram
 
-Here is the code used to make the histogram from Chapter \@ref(data-visualization). The dataset is named `college_grad_students` and the variable assigned to the x axis aesthetic is named `grad_median`, which is the median earnings of full-time employees with various graduate school majors. Then, a `geom_histogram` is added. The rest of the code inside the histogram parentheses, the `labs` parentheses (stands for labels), and the `theme_classic` is optional and used to make the histogram look more polished.
+Below is code used to make a histogram. The dataset is named `college_grad_students` and the variable assigned to the x axis aesthetic is named `grad_median`, which is the median earnings of full-time employees with various graduate school majors. Then, a `geom_histogram` is added. The rest of the code inside the histogram parentheses, the `labs` parentheses (stands for labels), and the `theme_classic` is optional and used to make the histogram look more polished.
 
 ```{r gradmedhistrep, fig.cap='Histogram of full-time median earnings for different graduate school majors'}
 ggplot(college_grad_students, aes(x = grad_median)) +
@@ -139,7 +137,7 @@ ggplot(countyComplete, aes(x = bachelors_2010)) +
 
 ## Box plot
 
-Below is the code used for the box plot in Chapter \@ref(data-visualization). Like the histogram, a box plot visualizes the distribution of one variable but uses descriptive measures median, first and third quartile, and identifies extreme values. Therefore, we only need to tell R which variable to assign to the either the x or y axis. Note that I assign `grad_median` to the y axis so that the box plot is vertical, which is merely a stylistic choice. Assigning `grad_median` to the x axis would make the box plot horizontal. Then, `geom_boxplot` is used to tell R to make a boxplot from `grad_median`.
+Below is code used to make a box plot. Like the histogram, a box plot visualizes the distribution of one variable but uses descriptive measures median, first and third quartiles, and identifies extreme values. Therefore, we only need to tell R which variable to assign to the either the x or y axis. Note that I assign `grad_median` to the y axis so that the box plot is vertical, which is merely a stylistic choice. Assigning `grad_median` to the x axis would make the box plot horizontal. Then, `geom_boxplot` is used to tell R to make a boxplot from `grad_median`.
 
 ```{r gradmedboxrep, fig.cap='Box plot of full-time median earnings for different graduate school majors'}
 ggplot(college_grad_students, aes(y = grad_median)) +
@@ -168,7 +166,7 @@ ggplot(college_grad_students, aes(y = grad_median)) +
 
 ## Bar chart
 
-There are two functions that make bar graphs: `geom_bar` and `geom_col`. Recall that a bar chart is used to show counts or proportions of levels within a categorical variable. In Chapter \@ref(data-visualization), a bar chart was used to show the counts and proportions of graduate majors defined as having either high or low unemployment. The table below shows a few rows and variables from the data. Note that these data are **disaggregated** with respect to the count of majors belonging to high or low unemployment. That is, we need our bar chart to count the number of rows with "high" and "low" in the `unemp_cat` column. In this case, we should use `geom_bar`.
+There are two functions that make bar graphs: `geom_bar` and `geom_col`. Recall that a bar chart is used to show counts or proportions of levels within a categorical variable. The table below shows a few rows and variables from my data. Note that these data are **disaggregated** with respect to the count of majors belonging to high or low unemployment. That is, I need my bar chart to count the number of rows with "high" and "low" in the `unemp_cat` column. In this case, I should use `geom_bar`.
 
 ```{r, echo=FALSE}
 library(fivethirtyeight)
@@ -188,7 +186,7 @@ gradschool_spia2$unemp_cat <- as.factor(gradschool_spia2$unemp_cat)
 kable(gradschool_spia2, digits = 3)
 ```
 
-Below is the code used to generate the side-by-side or dodged bar chart from Chapter \@ref(data-visualization). Note the use of `geom_bar`, which requires either an x or y aesthetic to be defined. Here, I assign the categorical variable `unemp_cat` to the x aesthetic, making the bar chart vertical. Assigning it to the y aesthetic would make the bar chart horizontal. Again, all the code past `geom_bar` is optional.
+Below is code to generate a side-by-side or dodged bar chart. Note the use of `geom_bar`, which requires either an x or y aesthetic to be defined. Here, I assign the categorical variable `unemp_cat` to the x aesthetic, making the bar chart vertical. Assigning it to the y aesthetic would make the bar chart horizontal. Again, all the code past `geom_bar` is optional.
 
 ```{r}
 ggplot(gradschool, aes(x = unemp_cat)) +
@@ -207,7 +205,7 @@ ggplot(gradschool, aes(x = unemp_cat)) +
   geom_bar()
 ```
 
-Below is the code used to generate the stacked bar chart showing counts, Figure \@ref(fig:empbar). The code within `aes` is less intuitive. Since `geom_bar` requires an x or y aesthetic to be defined, I have to assign x to nothing via the blank quotation marks. The `fill = unemp_cat` tell R to stack the bar chart, filling the bar with the counts of high and low. 
+Below is the code used to generate a stacked bar chart showing counts. The code within `aes` is less intuitive. Since `geom_bar` requires an x or y aesthetic to be defined, I have to assign x to nothing via the blank quotation marks. The `fill = unemp_cat` tell R to stack the bar chart, filling the bar with the counts of high and low. 
 
 ```{r}
 ggplot(gradschool, aes(x = "", fill = unemp_cat)) +
@@ -248,9 +246,9 @@ ggplot(gradschool, aes(x = "", fill = unemp_cat)) +
 
 When should we use `geom_col` instead? When our counts are already aggregated in our data. Refer back to the table above. Note that `grad_total` and `grad_median` contain the count of graduates within each major and their median pay, respectively. Therefore, we do not need R to count the number of rows in our data, but rather report each number already included in the data. The `geom_col` function takes these counts and visualizes them using a bar (or column) chart.
 
-The below code shows how to generate Figure \@ref(fig:spiapay), which visualized the median pay for the four majors in the data related to those offered by SPIA. Median pay is simply a number in the data that does not need counting, thus the code uses `geom_col`, which requires both an x and y aesthetic to be defined. To allow room for the long names of each major, I made the bar chart horizontal by assigning `major` to the y aesthetic. Each bar visually represents the numbers for `grad_median` in the above table.
+The below code shows an example using `geom_col`, which visualizes the median pay for the four majors in the data related to those offered by SPIA. Median pay is simply a number in the data that does not need counting, thus the code uses `geom_col`, which requires both an x and y aesthetic to be defined. To allow room for the long names of each major, I made the bar chart horizontal by assigning `major` to the y aesthetic. Each bar visually represents the numbers for `grad_median` in the above table.
 
-There is a new piece of code in the below chunk that can be used to reorder bars in ascending or descending order, which is generally preferred over random order of peaks and valleys. The `reorder(major, -grad_median)` code tells R to reorder the majors in the plot in ascending because of the minus sign; removing it would reverse the order to descending.
+There is new code below that can be used to reorder bars in ascending or descending order, which is generally preferred over random order. The `reorder(major, -grad_median)` code tells R to reorder the majors in the plot in ascending because of the minus sign; removing it would reverse the order to descending.
 
 ```{r}
 ggplot(gradschool_spia, aes(y = reorder(major, -grad_median), x = grad_median)) +
@@ -273,7 +271,7 @@ ggplot(gradschool_spia, aes(y = major, x = grad_median)) +
 
 ## Scatter plot
 
-The code below shows how the scatter plot in Chapter \@ref(data-visualization) was generated. This scatter plot actually contains two geometric objects. The `geom_point` function generates the scatter plot, and the `geom_smooth` function generates the regression/trend line. Note the assignment of x and y aesthetics that every scatter plot requires. Everything beyond `geom_point` is optional.
+The code below shows how to generate a scatter plot. This scatter plot actually contains two geometric objects. The `geom_point` function generates the scatter plot, and the `geom_smooth` function generates the regression/trend line. Note the assignment of x and y aesthetics that every scatter plot requires. Everything beyond `geom_point` is optional.
 
 ```{r, message=FALSE}
 ggplot(gradschool, aes(x = grad_median, y = grad_total)) +

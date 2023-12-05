@@ -7,7 +7,7 @@ In this chapter, you will learn how to:
 - Determine if a dataset has missing values
 - Determine which variables in a dataset have missing values and how many values are missing
 - Run functions on variables that have missing values
-- Replace all missing values with a non-missing value, such as 0, if doing so is advisable
+- Drop observations with missing data, if doing so is advisable
 
 ## Set-up
 
@@ -19,7 +19,7 @@ To complete this chapter, you need to
 
 ```{r, eval=FALSE}
 ---
-title: 'R Chapter 18'
+title: 'R Chapter 3'
 author: 'Your name'
 output: html_document
 ---
@@ -87,7 +87,7 @@ v <- c(NA, 5, NA, 4, 10, 11, NA, NA, 1, NA)
 is.na(v)
 ```
 
-Recall in Chapter \@ref(r-data) that the logical value of `TRUE` equals 1 in R, while `FALSE` equals 0. This means we can do math on TRUE/FALSE values just like we would if they were coded as 1/0.
+Recall from Chapter \@ref(r-data) that the logical value of `TRUE` equals 1 in R, while `FALSE` equals 0. This means we can do math on TRUE/FALSE values just like we would if they were coded as 1/0.
 
 If `is.na` gives us `TRUE` for every `NA`, then adding all the `TRUE`s will give us the total count of missing values.
 

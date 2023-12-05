@@ -218,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.1" data-path="6-r-regression.html"><a href="6-r-regression.html#general-syntax"><i class="fa fa-check"></i><b>6.3.1</b> General Syntax</a></li>
 <li class="chapter" data-level="6.3.2" data-path="6-r-regression.html"><a href="6-r-regression.html#continuous-outcome-and-continuous-or-categorical-explanatory-variables"><i class="fa fa-check"></i><b>6.3.2</b> Continuous outcome and continuous or categorical explanatory variables</a></li>
 <li class="chapter" data-level="6.3.3" data-path="6-r-regression.html"><a href="6-r-regression.html#interactions"><i class="fa fa-check"></i><b>6.3.3</b> Interactions</a></li>
-<li class="chapter" data-level="6.3.4" data-path="6-r-regression.html"><a href="6-r-regression.html#dummy-outcome"><i class="fa fa-check"></i><b>6.3.4</b> Dummy outcome</a></li>
+<li class="chapter" data-level="6.3.4" data-path="6-r-regression.html"><a href="6-r-regression.html#linear-probability-model-dummy-outcome"><i class="fa fa-check"></i><b>6.3.4</b> Linear Probability Model (dummy outcome)</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="6-r-regression.html"><a href="6-r-regression.html#reporting-regression-estimates"><i class="fa fa-check"></i><b>6.4</b> Reporting Regression Estimates</a>
 <ul>
@@ -312,7 +312,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Determine if a dataset has missing values</li>
 <li>Determine which variables in a dataset have missing values and how many values are missing</li>
 <li>Run functions on variables that have missing values</li>
-<li>Replace all missing values with a non-missing value, such as 0, if doing so is advisable</li>
+<li>Drop observations with missing data, if doing so is advisable</li>
 </ul>
 </div>
 <div id="set-up-1" class="section level2 hasAnchor" number="3.2">
@@ -323,7 +323,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Change the YAML to the following:</p></li>
 </ul>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="3-r-missing-data.html#cb8-1" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb8-2"><a href="3-r-missing-data.html#cb8-2" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&#39;R Chapter 18&#39;</span></span>
+<span id="cb8-2"><a href="3-r-missing-data.html#cb8-2" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&#39;R Chapter 3&#39;</span></span>
 <span id="cb8-3"><a href="3-r-missing-data.html#cb8-3" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&#39;Your name&#39;</span></span>
 <span id="cb8-4"><a href="3-r-missing-data.html#cb8-4" tabindex="-1"></a>output<span class="sc">:</span> html_document</span>
 <span id="cb8-5"><a href="3-r-missing-data.html#cb8-5" tabindex="-1"></a><span class="sc">---</span></span></code></pre></div>
@@ -378,7 +378,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="3-r-missing-data.html#cb12-1" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">5</span>, <span class="cn">NA</span>, <span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="dv">1</span>, <span class="cn">NA</span>)</span>
 <span id="cb12-2"><a href="3-r-missing-data.html#cb12-2" tabindex="-1"></a><span class="fu">is.na</span>(v)</span></code></pre></div>
 <pre><code> [1]  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE</code></pre>
-<p>Recall in Chapter <a href="2-r-data.html#r-data">2</a> that the logical value of <code>TRUE</code> equals 1 in R, while <code>FALSE</code> equals 0. This means we can do math on TRUE/FALSE values just like we would if they were coded as 1/0.</p>
+<p>Recall from Chapter <a href="2-r-data.html#r-data">2</a> that the logical value of <code>TRUE</code> equals 1 in R, while <code>FALSE</code> equals 0. This means we can do math on TRUE/FALSE values just like we would if they were coded as 1/0.</p>
 <p>If <code>is.na</code> gives us <code>TRUE</code> for every <code>NA</code>, then adding all the <code>TRUE</code>s will give us the total count of missing values.</p>
 <p>To sum all the values of any variable, we can use the <code>sum</code> function</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="3-r-missing-data.html#cb14-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(v))</span></code></pre></div>
