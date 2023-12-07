@@ -2,11 +2,11 @@
 
 # R Chapter Introduction
 
-This section contains what are referred to as R Chapters, each of which corresponds to a chapter in the previous section. Chapters in the previous section focus on concepts that are applicable regardless of statistical software. R Chapters present those concepts in ways to practically apply them via a short series of exercises using R.
+This section contains what are referred to as R Chapters. R Chapters cover course concepts in ways to practically apply them via a short series of exercises using R.
 
-Each R Chapter begins with a list of learning objectives followed by a what you need to set up in terms of packages and data to complete the chapter. Each chapter then guides you through a few exercises that require you to operate R. Periodically, they will ask you to interpret your results and/or connect what you have done to the concept it was meant to help you understand. By the end of each chapter, you will have at least one document to save and upload to eLC. That document will contain code and answers to questions. 
+Each R Chapter begins with a list of learning objectives followed by what you need to set up in terms of packages and data to complete the chapter. Each chapter then guides you through a few exercises that require you to operate R. Periodically, they will ask you to interpret your results and/or connect what you have done to the concept it was meant to help you understand. By the end of each chapter, you will have at least one document to save and upload to eLC. That document will contain code and answers to questions. 
 
-Once you upload your R Chapter work to eLC, a document will become available that contains my answers to those same exercises. This is meant to provide almost immediate feedback. You should compare your work to my own, making note of any differences and attempting to make sense of them. Keep in mind that my answers are not necessarily definitive. R Chapters will be incorporated into class discussion when possible, but feel free to ask specific questions about each R Chapter during class.
+Once you upload your R Chapter work to eLC, a document will become available that contains my answers to those same exercises. This is meant to provide almost immediate feedback. You can compare your work to my own, making note of any differences and attempting to make sense of them. Keep in mind that my answers are not necessarily definitive. R Chapters will be incorporated into class discussion when appropriate but feel free to ask specific questions about each R Chapter during class.
 
 ## What is R and RStudio
 
@@ -113,9 +113,7 @@ install.packages(c("knitr",
                    "arsenal",
                    "forecast",
                    "fpp2",
-                   "lubridate",
                    "readxl",
-                   "plm",
                    "broom",
                    "car",
                    "gvlma",
@@ -129,10 +127,7 @@ install.packages(c("knitr",
                    "Stat2Data",
                    "data.table",
                    "rmarkdown",
-                   "tinytex",
-                   "DiagrammeR",
                    "jtools",
-                   "blogdown",
                    "stargazer"))
 ```
 

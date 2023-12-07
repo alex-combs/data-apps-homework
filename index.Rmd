@@ -1,6 +1,6 @@
 --- 
-title: "PADP 7120 Homework"
-subtitle: "Using R to Learn Concepts and Skills"
+title: "PADP 7120 R Chapters"
+subtitle: "Learning Concepts and Skills Through R"
 author: "Alex Combs"
 date: "Last updated on `r format(Sys.time(), '%d %B %Y')`"
 site: bookdown::bookdown_site
@@ -18,9 +18,7 @@ always_allow_html: yes
 
 # Preface {-}
 
-This is a collection homework assignments for students enrolled in my sections of PADP 7120: Data Applications in Public Administration.
-
-Examples and exercises are presented using R. Students who intend to use a personal computer to complete exercises in the R chapters need to download and install the following software:
+This is a collection assignments called R Chapters for students enrolled in my section of PADP 7120: Data Applications in Public Administration. Students who intend to use a personal computer to complete exercises in the R chapters need to download and install the following software:
 
 - [R](https://cloud.r-project.org)
 - [RStudio](https://rstudio.com/products/rstudio/download/)
